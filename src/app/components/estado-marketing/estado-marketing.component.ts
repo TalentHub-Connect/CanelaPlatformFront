@@ -32,7 +32,7 @@ export class EstadoMarketingComponent implements OnInit {
         timer: 2000,
         timerProgressBar: true,
         didOpen: () => {
-          Swal.showLoading();
+          Swal.showLoading(null);
           let timer: any;
           timerInterval = setInterval(() => {
           }, 100);
@@ -57,7 +57,7 @@ export class EstadoMarketingComponent implements OnInit {
       timer: 2000,
       timerProgressBar: true,
       didOpen: () => {
-        Swal.showLoading();
+        Swal.showLoading(null);
         let timer: any;
         timerInterval = setInterval(() => {
         }, 100);
