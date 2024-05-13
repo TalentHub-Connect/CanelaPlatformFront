@@ -44,13 +44,6 @@ export class PermisosUsuarioComponent implements OnInit {
       }
     }).then((result) => {
       if (result.dismiss === Swal.DismissReason.timer) {
-        Swal.fire({
-          icon: 'warning',
-          title: 'Gestión de usuarios',
-          text: "No olvide guardar los cambios al finalizar",
-          confirmButtonText: 'Aceptar',
-          confirmButtonColor: '#963e6c',
-        });
       }
     });
 
@@ -60,6 +53,13 @@ export class PermisosUsuarioComponent implements OnInit {
       this.usuarios = users;
       this.usuarios.forEach((user) => {
         this.rolesPorUsuario[user.username] = user.roles;
+      });
+      Swal.fire({
+        icon: 'warning',
+        title: 'Gestión de usuarios',
+        text: "No olvide guardar los cambios al finalizar",
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#963e6c',
       });
     });
 
