@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UsuarioPermisoDto } from 'src/app/model/usuario-permiso-dto';
-import { PermisosUsuarioService } from 'src/app/service/permisos-usuario.service';
-import { User } from 'src/app/shared/model/auth/user';
-import { UserService } from '../../shared/model/user.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UsuarioPermisoDto} from 'src/app/model/usuario-permiso-dto';
+import {PermisosUsuarioService} from 'src/app/service/permisos-usuario.service';
+import {User} from 'src/app/shared/model/auth/user';
+import {UserService} from '../../shared/model/user.service';
 
 import Swal from "sweetalert2";
 
@@ -17,23 +17,44 @@ export class PermisosUsuarioComponent implements OnInit {
   constructor(
     private router: Router,
     private permisosUsuarioService: PermisosUsuarioService
-  ) {}
+  ) {
+  }
 
   usuarios: UsuarioPermisoDto[] | undefined;
   roles: string[] | undefined;
   rolesPorUsuario: { [key: string]: string[] } = {};
 
-  username: string | undefined;
+  username: string | null = null;
+
   ngOnInit(): void {
+
+    let timerInterval: any;
     Swal.fire({
-      icon: 'warning',
-      title: 'Gestión de usuarios',
-      text: "No olvide guardar los cambios al finalizar",
-      confirmButtonText: 'Aceptar',
-      confirmButtonColor: '#963e6c',
+      title: "Cargando...",
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        let timer: any;
+        timerInterval = setInterval(() => {
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      }
+    }).then((result) => {
+      if (result.dismiss === Swal.DismissReason.timer) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Gestión de usuarios',
+          text: "No olvide guardar los cambios al finalizar",
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#963e6c',
+        });
+      }
     });
 
-  username = localStorage.getItem('username');
+    this.username = localStorage.getItem('username');
 
     this.permisosUsuarioService.findAllUsers().subscribe((users) => {
       this.usuarios = users;
@@ -41,11 +62,17 @@ export class PermisosUsuarioComponent implements OnInit {
         this.rolesPorUsuario[user.username] = user.roles;
       });
     });
+
   }
 
-  enableMarketing(id: number) {}
-  enableFinanzas(id: number) {}
-  enableServer(id: number) {}
+  enableMarketing(id: number) {
+  }
+
+  enableFinanzas(id: number) {
+  }
+
+  enableServer(id: number) {
+  }
 
   public handleCheckboxChange(
     event: Event,
@@ -67,8 +94,8 @@ export class PermisosUsuarioComponent implements OnInit {
     this.username = username;
     if (isChecked) {
       this.rolesPorUsuario[username].push(rol);
-    }else{
-      let rolesFinales : string[] = [];
+    } else {
+      let rolesFinales: string[] = [];
       this.rolesPorUsuario[username].forEach((rolInner) => {
           if (rolInner != rol) {
             rolesFinales.push(rolInner);
@@ -81,17 +108,37 @@ export class PermisosUsuarioComponent implements OnInit {
     console.log(
       "Roles actualizados para el usuario con ID : " +
       this.username + " Sus roles son: " +
-    this.rolesPorUsuario[username]
-  );
+      this.rolesPorUsuario[username]
+    );
   }
 
-  guardarCambios(){
-    if(this.usuarios != undefined){
+  guardarCambios() {
+    if (this.usuarios != undefined) {
+      let timerInterval: any;
+      Swal.fire({
+        title: "Guardando...",
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+          let timer: any;
+          timerInterval = setInterval(() => {
+          }, 100);
+        },
+        willClose: () => {
+          clearInterval(timerInterval);
+        }
+      }).then((result) => {
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log("I was closed by the timer");
+        }
+      });
+
       this.usuarios.forEach((user) => {
-        user.roles = this.rolesPorUsuario[user.username] ;
+        user.roles = this.rolesPorUsuario[user.username];
       });
       this.permisosUsuarioService.saveAllUsers(this.usuarios).subscribe(result => {
-        if(!result){
+        if (!result) {
           Swal.fire({
             icon: 'error',
             title: 'Gestión de usuarios',
@@ -99,7 +146,7 @@ export class PermisosUsuarioComponent implements OnInit {
             confirmButtonText: 'Aceptar',
             confirmButtonColor: '#963e6c',
           });
-        }else{
+        } else {
           Swal.fire({
             icon: 'success',
             title: 'Gestión de usuarios',
@@ -110,7 +157,6 @@ export class PermisosUsuarioComponent implements OnInit {
         }
       });
     }
-
 
 
   }
