@@ -34,36 +34,34 @@
       <div class="contTitulo">
         <div class="container-fluid m-3"
              style="width: 1000px; height: 145px; border: 1px solid #ccc;background-color: #f3f0f2; border-radius: 18px;display: flex; align-items: center; ">
-          <h1 style="color: #963e6c; font-size: 4em; margin: 0 0 0 20px;">Empresas</h1>
+          <h1 style="color: #963e6c; font-size: 4em; margin: 0 0 0 20px;">Gestión estados marketing</h1>
         </div>
       </div>
       <div class="button-container">
-        <button class="btn btn-plan" type="button" (click)="nuevoEstado()">Gestionar estados</button>
-        <button class="btn btn-plan" type="button" (click)="guardarCambios()">Guardar cambios</button>
+        <h4>Para crear estado, digite el nuevo estado:</h4>
+        <input type="text" [(ngModel)]="nuevo_estado">
       </div>
+
+      <div class="button-container">
+        <button class="btn btn-plan" type="button" (click)="guardar()">Crear estado</button>
+      </div>
+      <h4>Estados existentes:</h4>
       <div class="contInfo">
         <div class="container-fluid ">
           <table class="table">
             <thead>
             <tr>
-              <th scope="col">Nombre</th>
-              <th scope="col">Correo</th>
-              <th scope="col">Telefono</th>
-              <th scope="col">Estado</th>
+              <th scope="col">Id</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Eliminar</th>
+
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let empresa of empresas">
-              <td>{{ empresa.nombre}}</td>
-              <td>{{ empresa.email}}</td>
-              <td>{{ empresa.phonecontact}}</td>
-              <td>
-<!--                <label for="exampleFormControlSelect1" class="form-label">{{ empresa.marketingstatusid}}</label>-->
-                <select class="form-select" [(ngModel)]="empresa.marketingstatusid">
-                  <option selected disabled>Selecciona una opción</option>
-                  <option *ngFor="let estado of existingStatuses" [value]="estado.id">{{estado.description}}</option>
-                </select>
-              </td>
+            <tr *ngFor="let estado of estados">
+              <td>{{ estado.id}}</td>
+              <td>{{ estado.description}}</td>
+              <td><button class="btn-plan" (click)="eliminarEstado(estado.id)">Eliminar</button></td>
             </tr>
             </tbody>
           </table>

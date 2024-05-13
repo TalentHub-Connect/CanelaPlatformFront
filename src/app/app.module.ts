@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -20,6 +20,7 @@ import { PlanEditarComponent } from './components/plan-editar/plan-editar.compon
 import { CrearEmpresaComponent } from './components/crear-empresa/crear-empresa.component';
 import { EditarEmpresaComponent } from './components/editar-empresa/editar-empresa.component';
 import { PerfilEditarComponent } from './components/perfil-editar/perfil-editar.component';
+import { EstadoMarketingComponent } from './components/estado-marketing/estado-marketing.component';
 import { PlanesCanelaComponent } from './components/planes-canela/planes-canela.component';
 import { EditarPlanComponent } from './components/editar-plan/editar-plan.component';
 import { CrearPlanComponent } from './components/crear-plan/crear-plan.component';
@@ -42,11 +43,18 @@ import { CrearPlanComponent } from './components/crear-plan/crear-plan.component
     CrearEmpresaComponent,
     EditarEmpresaComponent,
     PerfilEditarComponent,
+    EstadoMarketingComponent,
     PlanesCanelaComponent,
     EditarPlanComponent,
     CrearPlanComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    CommonModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

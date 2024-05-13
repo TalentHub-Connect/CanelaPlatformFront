@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UsuarioPermisoDto } from '../model/usuario-permiso-dto';
+import {MarketingDto} from "../model/marketing-dto";
 
 @Injectable({
   providedIn: 'root',
@@ -17,15 +18,13 @@ export class PermisosUsuarioService {
 
   findAllUsers(): Observable<UsuarioPermisoDto[]> {
     return this.http.get<UsuarioPermisoDto[]>(
-      'http://localhost:8080/canelaUser/getUsers'
+      'http://localhost:8762/user/find_all_with_roles'
     );
   }
 
-  modificarPermisos(perfil: UsuarioPermisoDto): Observable<UsuarioPermisoDto> {
-    return this.http.put<UsuarioPermisoDto>(
-      `http://localhost:8080/canelaUser/edit`,
-      perfil,
-      this.httpOptions
-    );
+
+  saveAllUsers(usuarios: UsuarioPermisoDto[]) {
+    return this.http.post<UsuarioPermisoDto[]>("http://localhost:8762/rol/update_all_users_roles", usuarios);
+
   }
 }

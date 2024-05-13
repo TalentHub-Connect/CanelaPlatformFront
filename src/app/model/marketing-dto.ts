@@ -1,8 +1,8 @@
 export class MarketingDto {
   constructor(
     public nombre: string,
-    public apellido: string,
+    public phonecontact: string,
     public email: string,
-    public status: string
+    public marketingstatusid: string
   ) {}
 }

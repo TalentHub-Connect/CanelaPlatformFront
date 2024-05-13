@@ -1,6 +1,5 @@
 
 
-
 .nav{
   width: 100%;
   height: 100%;
@@ -8,7 +7,7 @@
 
 .container-padre{
   width: 100%; /* Asegura que el contenedor sea de ancho completo */
-/* Elimina el padding interno */
+  /* Elimina el padding interno */
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -18,7 +17,7 @@
 
 }
 .container-padre > .row > .col {
-    width: 100%;
+  width: 100%;
 }
 
 .contInfo{
@@ -27,6 +26,7 @@
   height: 60%;
   border: 1px solid #ccc;
   background-color: #EDF2F7;
+  flex-direction:  column;
 }
 
 .col1 {
@@ -35,7 +35,6 @@
   height:100%;
   width: 15%;
   background-color: #EDF2F7; /* Color de fondo del menú */
-
 
 }
 
@@ -54,7 +53,7 @@
 }
 
 .container-fluid{
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .contenido{
@@ -65,7 +64,7 @@
   height:112px;*/
   height: 100%;
   border: 1px solid #ccc;
-    flex-direction: row;
+  flex-direction: row;
   justify-content: flex-start;
   background-color: #EDF2F7;
 }
@@ -99,8 +98,7 @@
   height: 25%;
   border: 1px solid #ccc;
   background-color: #52223b;
-  display: flex;
-  justify-content: center;
+  display: flex; justify-content: center;
   align-items: center;
 }
 /* Estilos para los contenedores adicionales */
@@ -193,6 +191,7 @@ input:checked + .slider:before {
 }
 
 
+
 /* Estilos para la barra de navegación lateral */
 .sidebar-sticky {
   position: fixed;
@@ -213,9 +212,9 @@ input:checked + .slider:before {
 @media (max-width: 768px) {
   /* Ajustes para dispositivos móviles */
   .sidebar-sticky {
-      position: relative;
-      height: auto; /* Ajusta la altura automáticamente en dispositivos móviles */
-      overflow-y: visible; /* Permite que el contenido de la barra lateral se desplace fuera de la pantalla si es necesario */
+    position: relative;
+    height: auto; /* Ajusta la altura automáticamente en dispositivos móviles */
+    overflow-y: visible; /* Permite que el contenido de la barra lateral se desplace fuera de la pantalla si es necesario */
   }
 }
 
@@ -291,12 +290,13 @@ input:checked + .slider:before {
   margin-right: 10px; /* Ajusta el margen según tus necesidades */
 }
 
+
 .button-container{
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  margin-top: 0.1%;
-  margin-bottom: 0.1%;
+  justify-content: center;
+  margin-top: 1%;
+  margin-bottom: 1%;
   width: 100%;
 }
 
@@ -306,3 +306,10 @@ input:checked + .slider:before {
   color: #ffffff;
 }
 
+h4 {
+  margin: 0.5%;
+}
+
+input{
+  width: 50%;
+}

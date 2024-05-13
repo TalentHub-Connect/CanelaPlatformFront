@@ -19,6 +19,7 @@ import { LogsComponent } from './components/logs/logs.component';
 import { MesaAyudaComponent } from './components/mesa-ayuda/mesa-ayuda.component';
 import { ImpersonarComponent } from './components/impersonar/impersonar.component';
 import { VerEmpresaComponent } from './components/ver-empresa/ver-empresa.component';
+import {EstadoMarketingComponent} from "./components/estado-marketing/estado-marketing.component";
 import { PlanesCanelaComponent } from './components/planes-canela/planes-canela.component';
 import { EditarPlanComponent } from './components/editar-plan/editar-plan.component';
 import { CrearPlanComponent } from './components/crear-plan/crear-plan.component';
@@ -49,6 +50,7 @@ const routes: Routes = [
 
       { path: 'canela/suscripciones', component: SuscripcionesComponent },
       { path: 'canela/marketing', component: MarketingComponent },
+      { path: 'canela/marketing/status', component: EstadoMarketingComponent },
       { path: 'canela/plan/edit/4', component: PlanEditarComponent },
       { path: 'canela/plan/add', component: PlanCrearComponent },
       { path: 'canela/empresa/add', component: CrearEmpresaComponent },
