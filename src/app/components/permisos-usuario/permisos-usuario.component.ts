@@ -34,7 +34,7 @@ export class PermisosUsuarioComponent implements OnInit {
       timer: 3000,
       timerProgressBar: true,
       didOpen: () => {
-        Swal.showLoading();
+        Swal.showLoading(null);
         let timer: any;
         timerInterval = setInterval(() => {
         }, 100);
@@ -120,7 +120,7 @@ export class PermisosUsuarioComponent implements OnInit {
         timer: 2000,
         timerProgressBar: true,
         didOpen: () => {
-          Swal.showLoading();
+          Swal.showLoading(null);
           let timer: any;
           timerInterval = setInterval(() => {
           }, 100);
