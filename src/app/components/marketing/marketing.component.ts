@@ -30,7 +30,7 @@ export class MarketingComponent implements OnInit {
       timer: 2000,
       timerProgressBar: true,
       didOpen: () => {
-        Swal.showLoading();
+        Swal.showLoading(null);
         let timer: any;
         timerInterval = setInterval(() => {
         }, 100);
@@ -74,7 +74,7 @@ export class MarketingComponent implements OnInit {
         timer: 2000,
         timerProgressBar: true,
         didOpen: () => {
-          Swal.showLoading();
+          Swal.showLoading(null);
           let timer: any;
           timerInterval = setInterval(() => {
           }, 100);
