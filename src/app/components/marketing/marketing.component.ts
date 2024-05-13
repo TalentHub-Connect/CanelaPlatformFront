@@ -26,7 +26,7 @@ export class MarketingComponent implements OnInit {
   ngOnInit(): void {
     let timerInterval: any;
     Swal.fire({
-      title: "Guardando...",
+      title: "Cargando...",
       timer: 2000,
       timerProgressBar: true,
       didOpen: () => {

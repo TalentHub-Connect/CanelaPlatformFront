@@ -7,7 +7,6 @@ import { EmpresaDto } from '../model/empresa-dto';
   providedIn: 'root',
 })
 export class EmpresaService {
-  private apiUrl = 'http://localhost:8080/facturations';
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -35,6 +34,6 @@ export class EmpresaService {
   }
 
   getEmpresas(): Observable<EmpresaDto[]> {
-    return this.http.get<EmpresaDto[]>(this.apiUrl, this.httpOptions);
+    return this.http.get<EmpresaDto[]>('http://localhost:8762/company/list', this.httpOptions);
   }
 }

@@ -13,7 +13,7 @@
             <div class="col2 ">
                 <div class="contenido" >
                     <div class="simple_container">
-                    
+
                         <div class="container cont1" >
                             <div style="display: flex; align-items: center; height: 48px;">
                                 <i class="fa-solid fa-magnifying-glass" style="margin-right: 10px;"></i>
@@ -28,14 +28,14 @@
                                 </div>
                             </div>
                         </div>
-                    </div>    
+                    </div>
 
                         <div class="contTitulo" >
                             <div class="container-fluid m-3" style="width: 1000px; height: 145px; border: 1px solid #ccc;background-color: #f3f0f2; border-radius: 18px;display: flex; align-items: center; ">
                                 <h1 style="color: #963e6c; font-size: 4em; margin: 0 0 0 20px;">Gestión suscripciones</h1>
                             </div>
                         </div>
-          
+
                         <div class="contInfo" >
                             <div class="container-fluid ">
                                 <table class="table">
@@ -49,25 +49,25 @@
                                             <th scope="col">Dirección</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Fecha final suscripción</th>
-                                            <th scope="col">Acciones</th> 
+                                            <th scope="col">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let suscripcion of suscripciones">
-                                            <td>{{ suscripcion.nameCompany}}</td>
+                                            <td>{{ suscripcion.namecompany}}</td>
                                             <td>{{ suscripcion.nit}}</td>
-                                            <td>{{ suscripcion.phoneCompany}}</td>
+                                            <td>{{ suscripcion.phonecompany}}</td>
                                             <td>{{ suscripcion.email}}</td>
-                                            <td>{{ suscripcion.numWorkers}}</td>
+                                            <td>{{ suscripcion.numworkers}}</td>
                                             <td>{{ suscripcion.address}}</td>
                                             <td>{{ suscripcion.status}}</td>
-                                            <td>{{ suscripcion.subscriptionEndDate}}</td>
+                                            <td>{{ suscripcion.subscriptionenddate}}</td>
                                             <td>
-                                                <button (click)="verSucripcion(suscripcion)">Ver</button>
-                                                <button (click)="editarSuscripcion(suscripcion)">Editar</button>
-                                                <button (click)="eliminarSuscripcion(suscripcion)">Eliminar</button>
+                                                <button class="btn-plan"  (click)="verSucripcion(suscripcion)">Ver</button>
+                                                <button class="btn-plan"  (click)="editarSuscripcion(suscripcion)">Editar</button>
+                                                <button class="btn-plan"  (click)="eliminarSuscripcion(suscripcion)">Eliminar</button>
                                             </td>
-                                        </tr>                                    
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

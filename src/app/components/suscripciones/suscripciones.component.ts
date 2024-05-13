@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmpresaDto } from 'src/app/model/empresa-dto';
 import { EmpresaService } from 'src/app/service/empresa.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-suscripciones',
@@ -16,6 +17,26 @@ export class SuscripcionesComponent implements OnInit {
 
   suscripciones: EmpresaDto[] | undefined;
   ngOnInit(): void {
+    let timerInterval: any;
+    Swal.fire({
+      title: "Cargando...",
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        let timer: any;
+        timerInterval = setInterval(() => {
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      }
+    }).then((result) => {
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log("I was closed by the timer");
+      }
+    });
+
     this.SuscripcioService.getEmpresas().subscribe(
       (data) => {
         console.log(data);

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {MarketingService} from "../../service/marketing.service";
 import {Marketingstatus} from "../../model/marketingstatus";
+import Swal from "sweetalert2";
 
 
 @Component({
@@ -25,13 +26,51 @@ export class EstadoMarketingComponent implements OnInit {
   guardar(){
     if(this.nuevo_estado!=undefined){
       let estado = new Marketingstatus(-1,this.nuevo_estado);
-      this.marketingService.saveStatus(estado).subscribe(x => x);
+      let timerInterval: any;
+      Swal.fire({
+        title: "Guardando...",
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+          let timer: any;
+          timerInterval = setInterval(() => {
+          }, 100);
+        },
+        willClose: () => {
+          clearInterval(timerInterval);
+        }
+      }).then((result) => {
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log("I was closed by the timer");
+        }
+      });
+      this.marketingService.saveStatus(estado).subscribe(x => window.location.reload());
     }
-    window.location.reload();
+
   }
 
   eliminarEstado(id: number){
-    this.marketingService.delete(id).subscribe(x => x);
-    window.location.reload();
+    let timerInterval: any;
+    Swal.fire({
+      title: "Eliminando...",
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        let timer: any;
+        timerInterval = setInterval(() => {
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      }
+    }).then((result) => {
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log("I was closed by the timer");
+      }
+    });
+    this.marketingService.delete(id).subscribe(x => window.location.reload());
+
   }
 }
