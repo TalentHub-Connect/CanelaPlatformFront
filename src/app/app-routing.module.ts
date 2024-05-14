@@ -47,7 +47,7 @@ const routes: Routes = [
         component: PerfilEditarComponent,
       },
 
-      {path: 'canela/cupon-detalle', component: CuponDetalleComponent},
+      {path: 'canela/cupon-detalle/:id', component: CuponDetalleComponent},
 
       { path: 'planes-canela', component: PlanesCanelaComponent },
       { path: 'editar-plan/:id', component: EditarPlanComponent },

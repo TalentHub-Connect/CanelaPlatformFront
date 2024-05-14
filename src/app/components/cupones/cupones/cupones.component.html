@@ -54,21 +54,21 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <!-- Aquí irán las tuplas generadas desde la base de datos -->
-                      <tr>
-                        <td>1</td>
-                        <td>Cupón 1</td>
-                        <td>Descripción del Cupón 1</td>
-                        <td>2024-06-30</td>
-                        <td>Activo</td>
-                        <td>10%</td>
-                        <td>Compañía A</td>
-                        <td><button class="btn">Ver cupón</button></td>
+                      <tr *ngFor="let cupon of cupones">
+                        <td>{{ cupon.id }}</td>
+                        <td>{{ cupon.nombre }}</td>
+                        <td>{{ cupon.descripcion }}</td>
+                        <td>{{ cupon.fechaExpiracion }}</td>
+                        <td>{{ cupon.estatus }}</td>
+                        <td>{{ cupon.descuento }}</td>
+                        <td>{{ cupon.companyid }}</td>
+                        <td>
+                            <a [routerLink]="['/canela/cupon-detalle', cupon.id]" class="btn">Ver cupón</a>
+                          </td>
                       </tr>
-                     
-                   
                     </tbody>
                   </table>
+                  
             </div>
         </div>
 

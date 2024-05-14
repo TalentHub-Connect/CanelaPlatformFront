@@ -239,7 +239,7 @@ input:checked+.slider:before {
 .nav-link:hover {
     font-family: "DM Sans", sans-serif;
     font-weight: bold;
-    color: #2E5559;
+    color: #2E55;
     background-color: #F8F8F8;
     /* Cambia el fondo al pasar el mouse, si es necesario */
 }
@@ -368,8 +368,8 @@ th {
 
 .btn {
     padding: 6px 10px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #fff;
+    color: #4CAF50;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -378,9 +378,10 @@ th {
 .container-cupon {
     width: 100%;
     height: 100vh;
+    padding-top: 60px;
     background: #f0fff3;
     display: flex;
-    align-items: center;
+    align-items:baseline;
     justify-content: center;
 }
 
@@ -388,8 +389,8 @@ th {
     background: linear-gradient(135deg, #346C73, #329AA6);
     color: #fff;
     text-align: center;
-    padding: 40px 80px;
-    border-radius: 15px;
+    padding: 60px 80px;
+    border-radius: 20px;
     box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.15);
     position: relative;
 }
@@ -426,14 +427,17 @@ th {
 .editar button,
 .eliminar button {
     background-color: white;
-    color: #333;
+    color: #000;
+    border-radius: 10px;
+    height: 50px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .editar button:hover,
 .eliminar button:hover {
-    background-color: #f0f0f0;
+    background-color: #d9d9d9;
+    height: 50px;
 }
 
 .editar button:focus,

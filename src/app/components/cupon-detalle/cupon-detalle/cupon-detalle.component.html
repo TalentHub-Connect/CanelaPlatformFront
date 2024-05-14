@@ -42,7 +42,8 @@
             <div class="container-cupon">
                 <div class="cupon-card">
                     <img src="assets/logo1.png" class="logo">
-                    <h3>20% de descuento por fidelidad con la compañia canela <br> redimible en la app</h3>
+                    <h3>{{ cupon?.nombre }}</h3>
+                    <h3>{{ cupon?.descripcion }}</h3>
                     <div class="acciones">
                         <div class="editar">
                             <button (click)="editarCupon()">Editar Cupón</button>
@@ -51,15 +52,12 @@
                             <button (click)="eliminarCupon()">Eliminar Cupón</button>
                         </div>
                     </div>
-                      
-                    <p> valido hasta el 23 de agiosto del 2024</p>
-
+                    <p> válido hasta el {{ cupon?.fechaExpiracion }}</p>
+                
                     <div class="circle1"></div>
                     <div class="circle2"></div>
-
-
-
                 </div>
+                
 
             </div>
         </div>
