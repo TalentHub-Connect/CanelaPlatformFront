@@ -19,10 +19,14 @@ import { LogsComponent } from './components/logs/logs.component';
 import { MesaAyudaComponent } from './components/mesa-ayuda/mesa-ayuda.component';
 import { ImpersonarComponent } from './components/impersonar/impersonar.component';
 import { VerEmpresaComponent } from './components/ver-empresa/ver-empresa.component';
-import {EstadoMarketingComponent} from "./components/estado-marketing/estado-marketing.component";
+import { EstadoMarketingComponent } from "./components/estado-marketing/estado-marketing.component";
 import { PlanesCanelaComponent } from './components/planes-canela/planes-canela.component';
 import { EditarPlanComponent } from './components/editar-plan/editar-plan.component';
 import { CrearPlanComponent } from './components/crear-plan/crear-plan.component';
+import { ServiciosComponent } from './components/servicios/servicios/servicios.component';
+import { CuponesComponent } from './components/cupones/cupones/cupones.component';
+import { CrearServicioComponent } from './components/crear-servicio/crear-servicio.component';
+import { CuponDetalleComponent } from './components/cupon-detalle/cupon-detalle/cupon-detalle.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -43,6 +47,8 @@ const routes: Routes = [
         component: PerfilEditarComponent,
       },
 
+      {path: 'canela/cupon-detalle', component: CuponDetalleComponent},
+
       { path: 'planes-canela', component: PlanesCanelaComponent },
       { path: 'editar-plan/:id', component: EditarPlanComponent },
       { path: 'editar-plan', component: EditarPlanComponent },
@@ -60,11 +66,14 @@ const routes: Routes = [
       { path: 'canela/mesa-ayuda', component: MesaAyudaComponent },
       { path: 'canela/impersonar', component: ImpersonarComponent },
 
+      { path: 'canela/servicios', component: ServiciosComponent },
+      { path: 'canela/cupones', component: CuponesComponent },
+
       // Ruta hija
       // Puedes añadir más rutas hijas que requieran Navbar aquí
     ],
   },
-
+  { path: 'canela/crear-servicio', component: CrearServicioComponent },
   { path: '**', redirectTo: '' },
 ];
 
@@ -72,4 +81,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
