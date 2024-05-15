@@ -27,6 +27,7 @@ import { ServiciosComponent } from './components/servicios/servicios/servicios.c
 import { CuponesComponent } from './components/cupones/cupones/cupones.component';
 import { CrearServicioComponent } from './components/crear-servicio/crear-servicio.component';
 import { CuponDetalleComponent } from './components/cupon-detalle/cupon-detalle/cupon-detalle.component';
+import { AuthGuard } from './shared/auth/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -38,42 +39,222 @@ const routes: Routes = [
     path: '', // Utiliza una ruta vacía como prefijo para las rutas con Navbar
     component: SlidebarComponent, // Este componente actúa como un layout
     children: [
-      { path: 'canela/permisos', component: PermisosUsuarioComponent },
-      { path: 'canela/planes', component: GestionPlanesComponent },
-      { path: 'canela/usuarios', component: UsuariosComponent },
-      { path: 'canela/perfil/view/:id', component: PerfilPersonalComponent },
       {
-        path: 'canela/perfil/edit/:username',
-        component: PerfilEditarComponent,
+        path: 'canela/permisos', component: PermisosUsuarioComponent,
+        canActivate: [AuthGuard],
+        data: {
+          roles: [
+            'ADMIN'
+          ],
+        },
+      },
+      {
+        path: 'canela/usuarios', component: UsuariosComponent,
+        canActivate: [AuthGuard],
+        data: {
+          roles: [
+            'ADMIN'
+          ],
+        },
       },
 
-      {path: 'canela/cupon-detalle/:id', component: CuponDetalleComponent},
+      { path: 'canela/logs', component: LogsComponent,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+          'SOPORTE',
+        ],
+      }, },
+      { path: 'canela/mesa-ayuda', component: MesaAyudaComponent,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+          'SOPORTE'
+        ],
+      }, },
 
-      { path: 'planes-canela', component: PlanesCanelaComponent },
-      { path: 'editar-plan/:id', component: EditarPlanComponent },
-      { path: 'editar-plan', component: EditarPlanComponent },
-      { path: 'crear-plan', component: CrearPlanComponent },
+      { path: 'canela/impersonar', component: ImpersonarComponent,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+          'SOPORTE',
+        ],
+      }, 
+    },
 
-      { path: 'canela/suscripciones', component: SuscripcionesComponent },
-      { path: 'canela/marketing', component: MarketingComponent },
-      { path: 'canela/marketing/status', component: EstadoMarketingComponent },
-      { path: 'canela/plan/edit/4', component: PlanEditarComponent },
-      { path: 'canela/plan/add', component: PlanCrearComponent },
-      { path: 'canela/empresa/add', component: CrearEmpresaComponent },
-      { path: 'canela/empresa/edit/:id', component: EditarEmpresaComponent },
-      { path: 'canela/empresa/ver:id', component: VerEmpresaComponent },
-      { path: 'canela/logs', component: LogsComponent },
-      { path: 'canela/mesa-ayuda', component: MesaAyudaComponent },
-      { path: 'canela/impersonar', component: ImpersonarComponent },
+    { path: 'canela/marketing', component: MarketingComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: [
+        'ADMIN',
+        'MARKETING',
+      ],
+    }, 
+   },
 
-      { path: 'canela/servicios', component: ServiciosComponent },
-      { path: 'canela/cupones', component: CuponesComponent },
+    { path: 'canela/marketing/status', component: EstadoMarketingComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: [
+        'ADMIN',
+        'MARKETING',
+      ],
+    }, 
+  },
 
+  { path: 'canela/servicios', component: ServiciosComponent,
+  canActivate: [AuthGuard],
+  data: {
+    roles: [
+      'ADMIN',
+      'SOPORTE',
+    ],
+  },  
+},
+      {path: 'canela/crear-servicio', component: CrearServicioComponent,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+          'SOPORTE',
+        ],
+      }, 
+    },
+
+      { path: 'canela/planes', component: GestionPlanesComponent,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+          'SOPORTE',
+        ],
+      },
+     },
+
+      { path: 'planes-canela', component: PlanesCanelaComponent,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+          'SOPORTE',
+        ],
+      },
+     },
+      { path: 'editar-plan/:id', component: EditarPlanComponent,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+          'SOPORTE',
+        ],
+      },
+     },
+      { path: 'editar-plan', component: EditarPlanComponent,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+          'SOPORTE',
+        ],
+      },
+     },
+      { path: 'crear-plan', component: CrearPlanComponent,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+          'SOPORTE',
+        ],
+      },
+     },
+      { path: 'canela/plan/edit/4', component: PlanEditarComponent,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+          'SOPORTE',
+        ],
+      },
+     },
+      { path: 'canela/plan/add', component: PlanCrearComponent,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+          'SOPORTE',
+        ],
+      },
+     },
+
+      { path: 'canela/perfil/view/:id', component: PerfilPersonalComponent },
+      { path: 'canela/perfil/edit/:username', component: PerfilEditarComponent, }, 
+      
+      { path: 'canela/cupones', component: CuponesComponent ,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+          'SOPORTE',
+        ],
+      },},
+      { path: 'canela/cupon-detalle/:id', component: CuponDetalleComponent,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+          'SOPORTE',
+        ],
+      },
+     },
+    
+      { path: 'canela/suscripciones', component: SuscripcionesComponent ,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+          'SOPORTE',
+        ],
+      },
+    },
+     
+      
+      { path: 'canela/empresa/add', component: CrearEmpresaComponent,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+          'SOPORTE',
+        ],
+      },
+     },
+      { path: 'canela/empresa/edit/:id', component: EditarEmpresaComponent,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+          'SOPORTE',
+        ],
+      },
+    },
+      { path: 'canela/empresa/ver:id', component: VerEmpresaComponent,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+          'SOPORTE',
+        ],
+      },
+     },
+      
+      
       // Ruta hija
       // Puedes añadir más rutas hijas que requieran Navbar aquí
     ],
   },
-  { path: 'canela/crear-servicio', component: CrearServicioComponent },
+
   { path: '**', redirectTo: '' },
 ];
 

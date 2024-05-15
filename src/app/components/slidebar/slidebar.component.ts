@@ -7,19 +7,21 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './slidebar.component.html',
   styleUrls: ['./slidebar.component.css'],
 })
-export class SlidebarComponent implements OnInit {
-  nombreEmpresa: string = '';
-  modulos: { icono: string; nombre: string }[] = [];
-  constructor(private sidebarService: SidebarService, private router: Router) {}
+export class SlidebarComponent implements  OnInit {
+  nombreEmpresa: string= '';
+  modulos: { icono: string, nombre: string }[] = [];
+  constructor(private sidebarService: SidebarService) { }
 
   ngOnInit(): void {
-    const hamBurger = document.querySelector('.toggle-btn') as HTMLElement;
+    console.log(localStorage.getItem('role'));
+    const hamBurger = document.querySelector(".toggle-btn") as HTMLElement;
 
-    hamBurger.addEventListener('click', () => {
-      const sidebar = document.querySelector('#sidebar') as HTMLElement;
-
-      sidebar.classList.toggle('expand');
+    hamBurger.addEventListener("click", () => {
+      const sidebar = document.querySelector("#sidebar") as HTMLElement;
+      
+      sidebar.classList.toggle("expand");
     });
+    
 
     // Obtener los módulos
     this.sidebarService.obtenerModulos().subscribe(
@@ -31,28 +33,13 @@ export class SlidebarComponent implements OnInit {
       }
     );
   }
-
-  pantallaPlanes() {
-    this.router.navigate(['/planes-canela']);
-  }
-
-  pantallaPermisos() {
-    this.router.navigate(['/canela/permisos']);
-  }
-
-  pantallaMarketing() {
-    this.router.navigate(['/canela/marketing']);
-  }
-
-  pantallaSuscripciones() {
-    this.router.navigate(['/canela/suscripciones']);
-  }
-
-  pantallaPerfil() {
-    this.router.navigate(['canela/perfil/view/:id']);
-  }
-
   logout(): void {
-    localStorage.clear();
+    localStorage.clear()
   }
+  role=localStorage.getItem('role');
+
+  showSupportCard: boolean = this.role!.includes('SOPORTE')|| this.role!.includes('ADMIN') ;
+  showMarketingCard: boolean = this.role!.includes('MARKETING') || this.role!.includes('ADMIN') ;
+  showCountCard: boolean = this.role!.includes('CUENTAS')|| this.role!.includes('ADMIN') ;
+  showAdminCard:boolean = this.role!.includes('ADMIN')|| this.role!.includes('ADMIN') ;
 }
