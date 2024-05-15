@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SlidebarService } from 'src/app/service/slidebar.service';
+
+import { SidebarService } from 'src/app/service/sidebar.service';
+
 
 
 @Component({
@@ -14,11 +16,13 @@ export class SlidebarComponent implements OnInit {
 
   showAdminCard: boolean = false;
   showSupportCard: boolean = false;
+
   showMerketingCard: boolean = false;
   showCountCard: boolean = false;
 
 
   constructor(private sidebarService: SlidebarService) { }
+
 
   ngOnInit(): void {
     const roleStr = localStorage.getItem('role');
@@ -31,14 +35,17 @@ export class SlidebarComponent implements OnInit {
       console.error('Role ID not found in localStorage');
     }
 
+
     const hamBurger = document.querySelector(".toggle-btn") as HTMLElement;
     hamBurger.addEventListener("click", () => {
       const sidebar = document.querySelector("#sidebar") as HTMLElement;
       sidebar.classList.toggle("expand");
+
     });
 
     const uniqueModules = new Set(); // Usar un Set para asegurar la unicidad
     let pendingRequests = this.roles.length; // Contador para solicitudes pendientes
+
 
     this.roles.forEach(role => {
       const roleId = this.getRoleId(role);
