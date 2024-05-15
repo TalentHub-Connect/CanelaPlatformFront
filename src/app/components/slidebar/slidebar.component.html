@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sidebar</title>
+    
 </head>
 
 <body>
@@ -20,7 +21,7 @@
                 </div>
             </div>
             <ul class="sidebar-nav">
-                <li class="sidebar-item" *ngIf="showAdminCard">
+                <li class="sidebar-item">
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                         data-bs-target="#admin" aria-expanded="false" aria-controls="admin">
                         <i class="bi bi-columns-gap" style="font-size: 1.5rem; color: #292C32;"></i>
@@ -32,7 +33,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="sidebar-item" *ngIf="showSupportCard">
+                <li class="sidebar-item">
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                         data-bs-target="#hire" aria-expanded="false" aria-controls="hire">
                         <i class="bi bi-clipboard2-heart" style="font-size: 1.5rem; color: #292C32;"></i>
@@ -49,8 +50,10 @@
                             <a [routerLink]="['/canela/impersonar']" class="sidebar-link">Impersonar</a>
                         </li>
                     </ul>
+
+
                 </li>
-                <li class="sidebar-item" *ngIf="showMarketingCard">
+                <li class="sidebar-item">
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                         data-bs-target="#fire" aria-expanded="false" aria-controls="fire">
                         <i class="bi bi-clipboard2-x" style="font-size: 1.5rem; color: #292C32;"></i>
@@ -60,9 +63,10 @@
                         <li class="sidebar-item">
                             <a [routerLink]="['/canela/marketing']" class="sidebar-link">Listado empresas</a>
                         </li>
+
                     </ul>
                 </li>
-                <li class="sidebar-item" *ngIf="showAccountsCard">
+                <li class="sidebar-item">
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                         data-bs-target="#nomi" aria-expanded="false" aria-controls="nomi">
                         <i class="bi bi-person-vcard" style="font-size: 1.5rem; color: #292C32;"></i>
@@ -83,19 +87,15 @@
                         </li>
                     </ul>
                 </li>
-
-
                 <li class="sidebar-item-automa" *ngFor="let modulo of modulos">
                     <a href="#" class="sidebar-link">
                         <i class="bi bi bi-gear" style="font-size: 1.5rem; color: #292C32;"></i>
                         <span>{{ modulo.description}}</span>
                     </a>
                 </li>
-
-
             </ul>
             <div class="sidebar-footer">
-                <a class="sidebar-link">
+                <a  class="sidebar-link">
                     <i [routerLink]="['canela/perfil/view/:id']" class="bi bi-person" style="font-size: 1.5rem; color: #292C32;"></i>
                     <span>Perfil</span>
                 </a>
