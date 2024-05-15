@@ -9,18 +9,18 @@ import { SoporteService } from 'src/app/service/soporte.service';
   styleUrl: './logs.component.css',
 })
 export class LogsComponent implements OnInit {
-  listSoporte: Soporte[] | undefined;
 
-  constructor(private soporteService: SoporteService) {}
+  listSoporte: Soporte[] = [];
+
+  constructor(private supportTicketService: SoporteService) { }
 
   ngOnInit(): void {
-    this.soporteService.getSoporte().subscribe(
-      (data) => {
-        this.listSoporte = data;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+    this.loadTickets();
   }
+
+  loadTickets(): void {
+    this.supportTicketService.getAllTickets()
+      .subscribe(tickets => this.listSoporte = tickets);
+  }
+
 }

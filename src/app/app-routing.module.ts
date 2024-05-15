@@ -28,6 +28,7 @@ import { CuponesComponent } from './components/cupones/cupones/cupones.component
 import { CrearServicioComponent } from './components/crear-servicio/crear-servicio.component';
 import { CuponDetalleComponent } from './components/cupon-detalle/cupon-detalle/cupon-detalle.component';
 import { AuthGuard } from './shared/auth/auth.guard';
+import { CrearCuponComponent } from './components/crear-cupon/crear-cupon/crear-cupon.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -39,33 +40,31 @@ const routes: Routes = [
     path: '', // Utiliza una ruta vacía como prefijo para las rutas con Navbar
     component: SlidebarComponent, // Este componente actúa como un layout
     children: [
-      {
-        path: 'canela/permisos', component: PermisosUsuarioComponent,
-        canActivate: [AuthGuard],
-        data: {
-          roles: [
-            'ADMIN'
-          ],
-        },
-      },
-      {
-        path: 'canela/usuarios', component: UsuariosComponent,
-        canActivate: [AuthGuard],
-        data: {
-          roles: [
-            'ADMIN'
-          ],
-        },
-      },
-
-      { path: 'canela/logs', component: LogsComponent,
+      {path: 'canela/permisos', component: PermisosUsuarioComponent,
       canActivate: [AuthGuard],
       data: {
         roles: [
           'ADMIN',
-          'SOPORTE',
         ],
-      }, },
+      },
+    },
+      { path: 'canela/usuarios', component: UsuariosComponent,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+        ],
+      },
+    },
+      { path: 'canela/logs', component: LogsComponent ,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+          'SOPORTE'
+        ],
+      },
+    },
       { path: 'canela/mesa-ayuda', component: MesaAyudaComponent,
       canActivate: [AuthGuard],
       data: {
@@ -73,16 +72,17 @@ const routes: Routes = [
           'ADMIN',
           'SOPORTE'
         ],
-      }, },
+      },
+    },
 
       { path: 'canela/impersonar', component: ImpersonarComponent,
       canActivate: [AuthGuard],
       data: {
         roles: [
           'ADMIN',
-          'SOPORTE',
+          'SOPORTE'
         ],
-      }, 
+      },
     },
 
     { path: 'canela/marketing', component: MarketingComponent,
@@ -90,19 +90,19 @@ const routes: Routes = [
     data: {
       roles: [
         'ADMIN',
-        'MARKETING',
+        'MARKETING'
       ],
-    }, 
-   },
+    },
+  },
 
     { path: 'canela/marketing/status', component: EstadoMarketingComponent,
     canActivate: [AuthGuard],
     data: {
       roles: [
         'ADMIN',
-        'MARKETING',
+        'MARKETING'
       ],
-    }, 
+    },
   },
 
   { path: 'canela/servicios', component: ServiciosComponent,
@@ -110,18 +110,18 @@ const routes: Routes = [
   data: {
     roles: [
       'ADMIN',
-      'SOPORTE',
+      'CUENTAS'
     ],
-  },  
+  },
 },
       {path: 'canela/crear-servicio', component: CrearServicioComponent,
       canActivate: [AuthGuard],
       data: {
         roles: [
           'ADMIN',
-          'SOPORTE',
+          'CUENTAS'
         ],
-      }, 
+      },
     },
 
       { path: 'canela/planes', component: GestionPlanesComponent,
@@ -129,113 +129,119 @@ const routes: Routes = [
       data: {
         roles: [
           'ADMIN',
-          'SOPORTE',
+          'CUENTAS'
         ],
       },
-     },
+    },
 
       { path: 'planes-canela', component: PlanesCanelaComponent,
       canActivate: [AuthGuard],
       data: {
         roles: [
           'ADMIN',
-          'SOPORTE',
+          'CUENTAS'
         ],
       },
-     },
+    },
       { path: 'editar-plan/:id', component: EditarPlanComponent,
       canActivate: [AuthGuard],
       data: {
         roles: [
           'ADMIN',
-          'SOPORTE',
+          'CUENTAS'
         ],
       },
-     },
-      { path: 'editar-plan', component: EditarPlanComponent,
+    },
+      { path: 'editar-plan', component: EditarPlanComponent ,
       canActivate: [AuthGuard],
       data: {
         roles: [
           'ADMIN',
-          'SOPORTE',
+          'CUENTAS'
         ],
       },
-     },
-      { path: 'crear-plan', component: CrearPlanComponent,
+    },
+      { path: 'crear-plan', component: CrearPlanComponent ,
       canActivate: [AuthGuard],
       data: {
         roles: [
           'ADMIN',
-          'SOPORTE',
+          'CUENTAS'
         ],
       },
-     },
+    },
       { path: 'canela/plan/edit/4', component: PlanEditarComponent,
       canActivate: [AuthGuard],
       data: {
         roles: [
           'ADMIN',
-          'SOPORTE',
+          'CUENTAS'
         ],
       },
-     },
+    },
       { path: 'canela/plan/add', component: PlanCrearComponent,
       canActivate: [AuthGuard],
       data: {
         roles: [
           'ADMIN',
-          'SOPORTE',
+          'CUENTAS'
         ],
       },
-     },
+    },
 
       { path: 'canela/perfil/view/:id', component: PerfilPersonalComponent },
       { path: 'canela/perfil/edit/:username', component: PerfilEditarComponent, }, 
-      
-      { path: 'canela/cupones', component: CuponesComponent ,
+      { path: 'canela/cupones', component: CuponesComponent,
       canActivate: [AuthGuard],
       data: {
         roles: [
           'ADMIN',
-          'SOPORTE',
+          'CUENTAS'
         ],
-      },},
+      },
+    },
       { path: 'canela/cupon-detalle/:id', component: CuponDetalleComponent,
       canActivate: [AuthGuard],
       data: {
         roles: [
           'ADMIN',
-          'SOPORTE',
+          'CUENTAS'
         ],
       },
-     },
-    
-      { path: 'canela/suscripciones', component: SuscripcionesComponent ,
+    },
+      { path: 'canela/crear-cupon', component: CrearCuponComponent,
       canActivate: [AuthGuard],
       data: {
         roles: [
           'ADMIN',
-          'SOPORTE',
+          'CUENTAS'
         ],
       },
     },
-     
-      
+      { path: 'canela/suscripciones', component: SuscripcionesComponent,
+      canActivate: [AuthGuard],
+      data: {
+        roles: [
+          'ADMIN',
+          'CUENTAS'
+        ],
+      },
+    },
       { path: 'canela/empresa/add', component: CrearEmpresaComponent,
       canActivate: [AuthGuard],
       data: {
         roles: [
           'ADMIN',
-          'SOPORTE',
+          'CUENTAS'
         ],
       },
-     },
+    },
       { path: 'canela/empresa/edit/:id', component: EditarEmpresaComponent,
       canActivate: [AuthGuard],
       data: {
         roles: [
           'ADMIN',
-          'SOPORTE',
+          'CUENTAS'
         ],
       },
     },
@@ -244,10 +250,10 @@ const routes: Routes = [
       data: {
         roles: [
           'ADMIN',
-          'SOPORTE',
+          'CUENTAS'
         ],
       },
-     },
+    },
       
       
       // Ruta hija

@@ -5,9 +5,12 @@ export class Soporte {
     public id: number,
     public tittle: string,
     public description: string,
-    public ticketDate: Date,
-    public hour: Time,
-    public status: boolean,
-    public answer: string
+    public ticketDate: string,
+    public hour: string,
+    public status: string,
+    public answer: string,
+    public companyId: number,
+    public typeSupportId: number,
+    public userid: number
   ) {}
 }

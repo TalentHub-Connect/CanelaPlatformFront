@@ -2,21 +2,16 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-mesa-ayuda',
-  standalone: true,
-  imports: [],
   templateUrl: './mesa-ayuda.component.html',
-  styleUrl: './mesa-ayuda.component.css',
+  styleUrls: ['./mesa-ayuda.component.css'],
 })
 export class MesaAyudaComponent {
+  // Método para mostrar el contenido seleccionado (descripción o respuesta)
   showContent(content: string) {
     const descriptionContent = document.querySelector('.description-content');
     const responseContent = document.querySelector('.response-content');
-    const descriptionPagination = document.querySelector(
-      '.pagination-item:nth-child(1)'
-    );
-    const responsePagination = document.querySelector(
-      '.pagination-item:nth-child(2)'
-    );
+    const descriptionPagination = document.querySelector('.pagination-item:nth-child(1)');
+    const responsePagination = document.querySelector('.pagination-item:nth-child(2)');
 
     if (content === 'description') {
       descriptionContent?.classList.add('active');
@@ -30,4 +25,16 @@ export class MesaAyudaComponent {
       responsePagination?.classList.add('active');
     }
   }
+
+  // Método para enviar el contenido editado de la respuesta
+  // Método para enviar el contenido editado de la respuesta
+enviarRespuesta() {
+  const textarea = document.querySelector('.response-textarea') as HTMLTextAreaElement;
+  const responseContent = document.querySelector('.response-content p');
+
+  if (textarea && responseContent) {
+    responseContent.textContent = textarea.value;
+  }
+}
+
 }

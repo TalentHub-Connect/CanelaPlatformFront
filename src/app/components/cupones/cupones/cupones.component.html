@@ -11,8 +11,8 @@
 
 <body>
 
-    <div class="container-padre ">
-        <div class=" col2">
+    <div class="container-padre">
+        <div class="col2">
             <div class="contenido">
                 <div class="simple_container">
                     <div class="container cont1">
@@ -37,43 +37,42 @@
                     </div>
                 </div>
 
+                <div class="mesa-ayuda-hijo">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre del Cupón</th>
+                                <th>Descripción</th>
+                                <th>Fecha de Expiración</th>
+                                <th>Status</th>
+                                <th>Descuento</th>
+                                <th>Compañía</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cupon of coupons">
+                                <td>{{ cupon.id }}</td>
+                                <td>{{ cupon.name }}</td>
+                                <td>{{ cupon.description }}</td>
+                                <td>{{ cupon.expirationdate }}</td>
+                                <td>{{ cupon.status }}</td>
+                                <td>{{ cupon.discountrate }}</td>
+                                <td>{{ cupon.companyId }}</td>
+                                <td>
+                                    <a [routerLink]="['/canela/cupon-detalle', cupon.id]" class="btn">Ver cupón</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-            </div>
-            <div class="mesa-ayuda-hijo">
-                <table>
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Nombre del Cupón</th>
-                        <th>Descripción</th>
-                        <th>Fecha de Expiración</th>
-                        <th>Status</th>
-                        <th>Descuento</th>
-                        <th>Compañía</th>
-                        <th>Acciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let cupon of cupones">
-                        <td>{{ cupon.id }}</td>
-                        <td>{{ cupon.nombre }}</td>
-                        <td>{{ cupon.descripcion }}</td>
-                        <td>{{ cupon.fechaExpiracion }}</td>
-                        <td>{{ cupon.estatus }}</td>
-                        <td>{{ cupon.descuento }}</td>
-                        <td>{{ cupon.companyid }}</td>
-                        <td>
-                            <a [routerLink]="['/canela/cupon-detalle', cupon.id]" class="btn">Ver cupón</a>
-                          </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  
+                <div class="agregar-cupon">
+                    <a [routerLink]="['/canela/crear-cupon']" class="btn-agregar-cupon">Agregar Cupón</a>
+                </div>
             </div>
         </div>
-
-
-
     </div>
 
 </body>

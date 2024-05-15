@@ -19,6 +19,6 @@ export class CrearServicioComponent {
   
   
   volverAtras() {
-    this.router.navigate(['/planes-canela']);
+    this.router.navigate(['/canela/servicios']);
   }
 }

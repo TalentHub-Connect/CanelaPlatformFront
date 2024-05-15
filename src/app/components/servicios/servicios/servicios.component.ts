@@ -83,7 +83,7 @@ export class ServiciosComponent  {
     servicio.estatus = (servicio.estatus === 'ACTIVO') ? 'INACTIVO' : 'ACTIVO';
   }
 
-  nuevoUsuario() {
+  nuevoServicio() {
     this.router.navigate(['canela/crear-servicio']);
   }
 }

@@ -7,17 +7,30 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class SoporteService {
-  private apiUrl = 'http://localhost:8080/canelaUser/support-logs';
+  private apiUrl = 'jdbc:mysql://roundhouse.proxy.rlwy.net:29569/supportDb?useSSL=false&serverTimezone=UTC';
 
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    }),
-  };
+  constructor(private http: HttpClient) { }
 
-  constructor(private http: HttpClient) {}
+  getAllTickets(): Observable<Soporte[]> {
+    return this.http.get<Soporte[]>(this.apiUrl);
+  }
 
-  getSoporte(): Observable<Soporte[]> {
-    return this.http.get<Soporte[]>(this.apiUrl, this.httpOptions);
+  getTicketById(id: number): Observable<Soporte> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Soporte>(url);
+  }
+
+  createTicket(ticket: Soporte): Observable<Soporte> {
+    return this.http.post<Soporte>(this.apiUrl, ticket);
+  }
+
+  updateTicket(ticket: Soporte): Observable<Soporte> {
+    const url = `${this.apiUrl}/${ticket.id}`;
+    return this.http.put<Soporte>(url, ticket);
+  }
+
+  deleteTicket(id: number): Observable<void> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<void>(url);
   }
 }

@@ -4,15 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil y Menú Vertical</title>
-
-
+    <title>Detalle Cupones</title>
 </head>
 
 <body>
-
-    <div class="container-padre ">
-        <div class=" col2">
+    <div class="container-padre">
+        <div class="col2">
             <div class="contenido">
                 <div class="simple_container">
                     <div class="container cont1">
@@ -32,40 +29,45 @@
                 </div>
                 <div class="contTitulo">
                     <div class="container-fluid m-3"
-                        style="width: 1000px; height: 145px; border: 1px solid #ccc;background-color: #f3f0f2; border-radius: 18px;display: flex; align-items: center; ">
+                        style="width: 1000px; height: 145px; border: 1px solid #ccc;background-color: #f3f0f2; border-radius: 18px;display: flex; align-items: center;">
                         <h1 style="color: #963e6c; font-size: 4em; margin: 0 0 0 20px;">Detalle Cupones</h1>
                     </div>
                 </div>
-
-
             </div>
+
             <div class="container-cupon">
                 <div class="cupon-card">
                     <img src="assets/logo1.png" class="logo">
-                    <h3>{{ cupon?.nombre }}</h3>
-                    <h3>{{ cupon?.descripcion }}</h3>
+                    <div *ngIf="cupon">
+                        <h3>
+                            <span *ngIf="!isEditing">{{ cupon.name }}</span>
+                            <input *ngIf="isEditing" [(ngModel)]="cupon.name" placeholder="Nombre del Cupón">
+                        </h3>
+                        <h3>
+                            <span *ngIf="!isEditing">{{ cupon.description }}</span>
+                            <input *ngIf="isEditing" [(ngModel)]="cupon.description" placeholder="Descripción">
+                        </h3>
+                        <p>Válido hasta el 
+                            <span *ngIf="!isEditing">{{ cupon.expirationdate }}</span>
+                            <input *ngIf="isEditing" [(ngModel)]="cupon.expirationdate" placeholder="Fecha de Expiración">
+                        </p>
+                    </div>
+
                     <div class="acciones">
                         <div class="editar">
-                            <button (click)="editarCupon()">Editar Cupón</button>
+                            <button *ngIf="!isEditing" (click)="editCoupon()">Editar Cupón</button>
+                            <button *ngIf="isEditing" (click)="saveCoupon()">Guardar Cambios</button>
                         </div>
                         <div class="eliminar">
-                            <button (click)="eliminarCupon()">Eliminar Cupón</button>
+                            <button (click)="deleteCoupon()">Eliminar Cupón</button>
                         </div>
                     </div>
-                    <p> válido hasta el {{ cupon?.fechaExpiracion }}</p>
-                
                     <div class="circle1"></div>
                     <div class="circle2"></div>
                 </div>
-                
-
             </div>
         </div>
-
-
-
     </div>
-
 </body>
 
 </html>
