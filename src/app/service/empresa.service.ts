@@ -33,6 +33,7 @@ export class EmpresaService {
     return this.http.get<EmpresaDto>(`http://localhost:8080/companies/{id}`);
   }
 
+
   getEmpresas(): Observable<EmpresaDto[]> {
     return this.http.get<EmpresaDto[]>('http://localhost:8762/company/list', this.httpOptions);
   }
