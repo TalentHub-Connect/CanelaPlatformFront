@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+
 import { SidebarService } from 'src/app/service/sidebar.service';
+
 
 
 
@@ -16,6 +18,7 @@ export class SlidebarComponent implements OnInit {
 
   showAdminCard: boolean = false;
   showSupportCard: boolean = false;
+
 
   showMerketingCard: boolean = false;
   showCountCard: boolean = false;
@@ -45,6 +48,7 @@ export class SlidebarComponent implements OnInit {
 
     const uniqueModules = new Set(); // Usar un Set para asegurar la unicidad
     let pendingRequests = this.roles.length; // Contador para solicitudes pendientes
+
 
 
     this.roles.forEach(role => {

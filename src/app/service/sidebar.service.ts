@@ -12,4 +12,6 @@ export class SidebarService {
   obtenerModulos(roleId: number): Observable<any[]> {
     return this.http.get<any[]>(`https://canelaaccounmanagermicroservice-qa.up.railway.app/services/role/${roleId}`);
   }
+
 }
+
