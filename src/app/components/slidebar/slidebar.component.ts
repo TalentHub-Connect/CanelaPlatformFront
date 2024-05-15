@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SidebarService } from 'src/app/shared/model/slidebar.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { SidebarService } from 'src/app/service/sidebar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-slidebar',
@@ -9,27 +9,102 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SlidebarComponent implements OnInit {
   nombreEmpresa: string = '';
-  modulos: { icono: string; nombre: string }[] = [];
+  modulos: { id: number, description: string, rolId: number, status: string }[] = [];
+  roles: string[] = [];
+
+  showAdminCard: boolean = false;
+  showSupportCard: boolean = false;
+  showMarketingCard: boolean = false;
+  showAccountsCard: boolean = false;
+
   constructor(private sidebarService: SidebarService, private router: Router) {}
 
   ngOnInit(): void {
-    const hamBurger = document.querySelector('.toggle-btn') as HTMLElement;
+    // Obtener el nombre del rol del almacenamiento local
+    const roleStr = localStorage.getItem('role');
+    console.log('Role string from localStorage:', roleStr);
 
+    if (roleStr) {
+      this.roles = roleStr.split(', '); // Asume que los roles están separados por comas y espacios
+      console.log('Role names:', this.roles);
+    } else {
+      console.error('Role ID not found in localStorage');
+    }
+
+    // Agregar el event listener para el botón de hamburguesa
+    const hamBurger = document.querySelector('.toggle-btn') as HTMLElement;
     hamBurger.addEventListener('click', () => {
       const sidebar = document.querySelector('#sidebar') as HTMLElement;
-
       sidebar.classList.toggle('expand');
     });
 
-    // Obtener los módulos
-    this.sidebarService.obtenerModulos().subscribe(
-      (modulos: any[]) => {
-        this.modulos = modulos;
-      },
-      (error) => {
-        console.error('Error al obtener los módulos:', error);
+    // Obtener los módulos basados en los roles
+    const uniqueModules = new Set(); // Usar un Set para asegurar la unicidad
+    let pendingRequests = this.roles.length; // Contador para solicitudes pendientes
+
+    this.roles.forEach(role => {
+      const roleId = this.getRoleId(role);
+      if (roleId !== 0) { // Asegurarse de que el roleId es válido
+        this.sidebarService.obtenerModulos(roleId).subscribe(
+          (modulos: any[]) => {
+            console.log(`Modulos recibidos del API para el rol ${role}:`, modulos);
+
+            // Filtrar los módulos basados en el rol y el estado
+            const filteredModulos = modulos.filter(modulo => 
+              modulo.rolId === roleId && 
+              modulo.status === 'ACTIVO' && 
+              !uniqueModules.has(modulo.id)
+            );
+
+            filteredModulos.forEach(modulo => uniqueModules.add(modulo.id));
+            this.modulos = [...this.modulos, ...filteredModulos];
+            console.log('Modulos filtrados:', this.modulos);
+
+            // Decrementar el contador de solicitudes pendientes y llamar setCardVisibility una vez
+            pendingRequests--;
+            if (pendingRequests === 0) {
+              this.setCardVisibility();
+            }
+          },
+          (error) => {
+            console.error('Error al obtener los módulos:', error);
+            pendingRequests--;
+            if (pendingRequests === 0) {
+              this.setCardVisibility();
+            }
+          }
+        );
+      } else {
+        pendingRequests--;
+        if (pendingRequests === 0) {
+          this.setCardVisibility();
+        }
       }
-    );
+    });
+  }
+
+  getRoleId(roleName: string): number {
+    const roleMap: { [key: string]: number } = {
+      'ADMIN': 1,
+      'SOPORTE': 2,
+      'MARKETING': 3,
+      'CUENTAS': 4
+    };
+    return roleMap[roleName] || 0;
+  }
+
+  setCardVisibility(): void {
+    console.log('Setting card visibility based on modulos:', this.modulos);
+
+    this.showAdminCard = this.modulos.some(modulo => modulo.description === 'Administrador');
+    this.showSupportCard = this.modulos.some(modulo => modulo.description === 'Soporte');
+    this.showMarketingCard = this.modulos.some(modulo => modulo.description === 'Marketing');
+    this.showAccountsCard = this.modulos.some(modulo => modulo.description === 'Cuentas');
+
+    console.log('Card visibility - Admin:', this.showAdminCard);
+    console.log('Card visibility - Support:', this.showSupportCard);
+    console.log('Card visibility - Marketing:', this.showMarketingCard);
+    console.log('Card visibility - Accounts:', this.showAccountsCard);
   }
 
   pantallaPlanes() {
