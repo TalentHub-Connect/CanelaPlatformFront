@@ -70,19 +70,29 @@
                     </a>
                     <ul id="nomi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Servicios</a>
+                            <a [routerLink]="['/canela/servicios']"  class="sidebar-link">Servicios</a>
                         </li>
                         <li class="sidebar-item">
                             <a [routerLink]="['/planes-canela']" class="sidebar-link">Planes</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Cupones</a>
+                            <a [routerLink]="['/canela/cupones']" class="sidebar-link">Cupones</a>
                         </li>
                         <li class="sidebar-item">
                             <a [routerLink]="['/canela/suscripciones']" class="sidebar-link">Suscripciones</a>
                         </li>
                     </ul>
                 </li>
+
+
+                <li class="sidebar-item-automa" *ngFor="let modulo of modulos">
+                    <a href="#" class="sidebar-link">
+                        <i class="bi bi bi-gear" style="font-size: 1.5rem; color: #292C32;"></i>
+                        <span>{{ modulo.description}}</span>
+                    </a>
+                </li>
+
+
             </ul>
             <div class="sidebar-footer">
                 <a class="sidebar-link">
