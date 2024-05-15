@@ -1,0 +1,387 @@
+.nav {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .container-padre {
+    width: 100%;
+    /* Asegura que el contenedor sea de ancho completo */
+    /* Elimina el padding interno */
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    height: 100%;
+  
+  
+  }
+  
+  .container-padre>.row>.col {
+    width: 100%;
+  }
+  
+  .contInfo {
+    display: flex;
+    width: 100%;
+    height: 60%;
+    border: 1px solid #ccc;
+    background-color: #EDF2F7;
+  }
+  
+  .col1 {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 15%;
+    background-color: #EDF2F7;
+    /* Color de fondo del menú */
+  
+  
+  }
+  
+  
+  .col2 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+  
+    background-color: #f8f9fa;
+    /* Color de fondo del menú */
+  
+  }
+  
+  .container-fluid {
+    margin-top: 20px;
+  }
+  
+  .contenido {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 0px;
+    /*width: 1191.005px;
+    height:112px;*/
+    height: 100%;
+    border: 1px solid #ccc;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: #EDF2F7;
+  }
+  
+  .simple_container {
+    display: flex;
+    width: 100%;
+    height: 15%;
+  }
+  
+  .cont1 {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 50px;
+  }
+  
+  .cont2 {
+    display: flex;
+    width: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  
+  .contTitulo {
+    /*width: 1191.005px; 
+    height: 210px;*/
+    width: 100%;
+    height: 25%;
+    border: 1px solid #ccc;
+    background-color: #52223b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Estilos para los contenedores adicionales */
+  .col-11 {
+    border: 1px solid #dee2e6;
+    /* Borde para visualización */
+    margin-top: 20px;
+    /* Espaciado superior */
+    padding: 20px;
+    /* Espaciado interno */
+  }
+  
+  .col-3 {
+    background-color: #EDF2F7;
+    /* Color de fondo del menú */
+    border-right: 1px solid #dee2e6;
+    /* Borde derecho */
+  
+  }
+  
+  
+  
+  /* Estilos para el interruptor personalizado */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  input:checked+.slider {
+    background-color: #52223b;
+  }
+  
+  input:focus+.slider {
+    box-shadow: 0 0 1px #52223b;
+  }
+  
+  input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Estilos para el círculo interior del interruptor */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  
+  /* Estilos para los íconos de edición y eliminación */
+  .edit-icon,
+  .delete-icon {
+    text-decoration: none;
+    /* Quita el subrayado del enlace */
+    margin-right: 10px;
+    /* Espacio entre los íconos */
+  }
+  
+  .edit-icon:hover,
+  .delete-icon:hover {
+    color: red;
+    /* Cambia el color al pasar el cursor sobre los íconos */
+  }
+  
+  
+  /* Estilos para la barra de navegación lateral */
+  .sidebar-sticky {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    padding-top: 10px;
+    background-color: #FFFFFF;
+    /* Fondo de la barra de navegación */
+  }
+  
+  
+  
+  /* Estilos para el contenido principal */
+  .main-content {
+    padding-left: 15px;
+    /* Esto deja espacio a la izquierda para que el contenido no se superponga con la barra lateral */
+  }
+  
+  /* Ajustes para dispositivos móviles */
+  @media (max-width: 768px) {
+  
+    /* Ajustes para dispositivos móviles */
+    .sidebar-sticky {
+      position: relative;
+      height: auto;
+      /* Ajusta la altura automáticamente en dispositivos móviles */
+      overflow-y: visible;
+      /* Permite que el contenido de la barra lateral se desplace fuera de la pantalla si es necesario */
+    }
+  }
+  
+  /* Cambia el color del texto y el stroke al pasar el mouse */
+  .nav-link:hover {
+    font-family: "DM Sans", sans-serif;
+    font-weight: bold;
+    color: #2E5559;
+    background-color: #F8F8F8;
+    /* Cambia el fondo al pasar el mouse, si es necesario */
+  }
+  
+  .logo img {
+    margin-top: 20px;
+    margin-left: 5px;
+    max-width: 100%;
+    /* Agrega más estilos si es necesario */
+  }
+  
+  .user-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-img {
+    width: 52px;
+    /* Tamaño más pequeño para la imagen */
+    height: 52px;
+    margin-right: 10px;
+    /* Asegura un espacio entre la imagen y el texto */
+  }
+  
+  .user-info h1 {
+    font-family: "DM Sans", sans-serif;
+    font-weight: bold;
+    color: #000000;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: -2px;
+    margin-right: 10px;
+  }
+  
+  .user-info h2 {
+    font-family: "DM Sans", sans-serif;
+    font-weight: regular;
+    color: #A4A4A4;
+    font-size: 13px;
+  }
+  
+  .dropdown img {
+    cursor: pointer;
+    /* Cambia el cursor al pasar por encima */
+    width: 30px;
+    /* Ajusta el tamaño del botón de tres puntos si es necesario */
+  }
+  
+  .dropdown-menu {
+    display: none;
+    /* Oculta inicialmente el menú */
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    /* Muestra el menú al pasar el cursor */
+  }
+  
+  .nav-link {
+    display: flex;
+    align-items: center;
+    font-family: 'DM Sans', sans-serif;
+    margin-left: -10px;
+    margin-bottom: 15px;
+    color: #292C32;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .nav-link .icon {
+    width: 24px;
+    /* O el tamaño que tengan tus iconos */
+    height: 24px;
+    margin-right: 10px;
+    /* Ajusta el margen según tus necesidades */
+  }
+  
+  .mesa-ayuda-hijo {
+    display: flex;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+th {
+  background-color: #f2f2f2;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.btn-agregar-cupon {
+  margin-top: 20px;
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn-agregar-cupon:hover {
+  background-color: #45a049;
+}

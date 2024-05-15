@@ -24,6 +24,11 @@ import { EstadoMarketingComponent } from './components/estado-marketing/estado-m
 import { PlanesCanelaComponent } from './components/planes-canela/planes-canela.component';
 import { EditarPlanComponent } from './components/editar-plan/editar-plan.component';
 import { CrearPlanComponent } from './components/crear-plan/crear-plan.component';
+import { ServiciosComponent } from './components/servicios/servicios/servicios.component';
+import { CuponesComponent } from './components/cupones/cupones/cupones.component';
+import { CrearServicioComponent } from './components/crear-servicio/crear-servicio.component';
+import { CuponDetalleComponent } from './components/cupon-detalle/cupon-detalle/cupon-detalle.component';
+import { CrearCuponComponent } from './components/crear-cupon/crear-cupon/crear-cupon.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +52,11 @@ import { CrearPlanComponent } from './components/crear-plan/crear-plan.component
     PlanesCanelaComponent,
     EditarPlanComponent,
     CrearPlanComponent,
+    ServiciosComponent,
+    CuponesComponent,
+    CrearServicioComponent,
+    CuponDetalleComponent,
+    CrearCuponComponent,
   ],
   imports: [
     BrowserModule,
