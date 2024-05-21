@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { EmpresaEditar } from 'src/app/model/empresa-editar';
+import { SuscripcionDto } from 'src/app/model/suscripcion-dto';
 import { EmpresaService } from 'src/app/service/empresa-editar.service';
+import { SuscripcioService } from 'src/app/service/suscripcio.service';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -13,12 +14,12 @@ import { Observable } from 'rxjs';
 export class EditarEmpresaComponent implements OnInit {
   constructor(
     private router: Router,
-    private EmpresaService: EmpresaService,
+    private SuscripcioService: SuscripcioService,
     private route: ActivatedRoute
   ) {}
 
   entradaid: number | undefined;
-  empresa: EmpresaEditar | undefined;
+  empresa: SuscripcionDto | undefined;
   entradaNombre: string | undefined;
   entradanNIT: number | undefined;
   entradaCorreo: string | undefined;
@@ -30,9 +31,11 @@ export class EditarEmpresaComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap
       .pipe(
-        switchMap((params) => this.EmpresaService.findById(+params.get('id')!))
+        switchMap((params) =>
+          this.SuscripcioService.getSuscripcionById(+params.get('id')!)
+        )
       )
-      .subscribe((EmpresaEditar) => (this.empresa = EmpresaEditar));
+      .subscribe((SuscripcionDto) => (this.empresa = SuscripcionDto));
   }
 
   editar() {
@@ -68,16 +71,17 @@ export class EditarEmpresaComponent implements OnInit {
         this.empresa.subscriptionEndDate = fechaFinal;
         this.empresa.email = correo;
 
-        this.EmpresaService.modificarEmpresa(this.empresa).subscribe(
-          (result) => {
-            this.router.navigate(['/canela/perfil/view/:id']);
-          }
-        );
+        this.SuscripcioService.updateSuscripcion(
+          this.empresa.id,
+          this.empresa
+        ).subscribe((result) => {
+          this.router.navigate(['canela/suscripciones']);
+        });
       }
     }
   }
 
   volver() {
-    this.router.navigate(['/canela/perfil/view/:id']);
+    this.router.navigate(['canela/suscripciones']);
   }
 }

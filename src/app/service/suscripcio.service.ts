@@ -13,23 +13,26 @@ export class SuscripcioService {
 
   constructor(private http: HttpClient) {}
 
-  getAllCoupons(): Observable<SuscripcionDto[]> {
+  getAllSuscripcion(): Observable<SuscripcionDto[]> {
     return this.http.get<SuscripcionDto[]>(this.baseUrl);
   }
 
-  getCouponById(id: number): Observable<SuscripcionDto> {
+  getSuscripcionById(id: number): Observable<SuscripcionDto> {
     return this.http.get<SuscripcionDto>(`${this.baseUrl}/${id}`);
   }
 
-  createCoupon(coupon: SuscripcionDto): Observable<SuscripcionDto> {
-    return this.http.post<SuscripcionDto>(this.baseUrl, coupon);
+  createSuscripcion(suscripcion: SuscripcionDto): Observable<SuscripcionDto> {
+    return this.http.post<SuscripcionDto>(this.baseUrl, suscripcion);
   }
 
-  updateCoupon(id: number, coupon: SuscripcionDto): Observable<SuscripcionDto> {
-    return this.http.put<SuscripcionDto>(`${this.baseUrl}/${id}`, coupon);
+  updateSuscripcion(
+    id: number,
+    suscripcion: SuscripcionDto
+  ): Observable<SuscripcionDto> {
+    return this.http.put<SuscripcionDto>(`${this.baseUrl}/${id}`, suscripcion);
   }
 
-  deleteCoupon(id: number): Observable<void> {
+  deleteSuscripcion(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 }

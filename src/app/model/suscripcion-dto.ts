@@ -1,9 +1,16 @@
 export class SuscripcionDto {
   constructor(
     public id: number,
-    public namecompany: string,
+    public nameCompany: string,
+    public nit: number,
+    public address: string,
     public email: string,
-    public suscripcionEndDate: Date,
+    public phoneCompany: number,
+    public nameLegalRepresentative: string,
+    public idLegalRepresentative: number,
+    public linkDate: string,
+    public subscriptionEndDate: Date,
+    public numWorkers: number,
     public status: string
   ) {}
 }
