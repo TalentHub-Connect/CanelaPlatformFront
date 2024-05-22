@@ -4,6 +4,8 @@ import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../../app/services/auth.service';
 import { UtilService } from '../../../app/services/util.services';
+import { UserService } from 'src/app/shared/model/user.service';
+import { User } from 'src/app/shared/model/auth/user';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,8 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private utilService: UtilService
+    private utilService: UtilService,
+    private UserService: UserService
   ) {}
 
   username: string = '';
@@ -22,6 +25,7 @@ export class LoginComponent {
   error: boolean = false;
   error_message: string = 'Error de conexión';
   returnUrl: string = '/';
+  usuario: User | undefined;
   error_dict: { [key: number]: string } = {
     400: 'Credenciales incorrectas',
     500: 'Error del servidor',
@@ -51,10 +55,16 @@ export class LoginComponent {
       this.authService.login(this.username, this.password).subscribe(
         (data: any) => {
           console.log('Respuesta del servidor:', data);
-          const rol = localStorage.getItem('role');
-          if (rol === 'ADMIN_CANELA, default-roles-talentsoft') {
+          const email = localStorage.getItem('email');
+          this.UserService.getUserRole(email).subscribe(
+            (usr) => (this.usuario = usr)
+          );
+
+          if (this.usuario?.role === 'ADMIN_CANELA, default-roles-talentsoft') {
             this.router.navigate(['/canela/usuarios']);
-          } else if (rol !== 'ADMIN_CANELA, default-roles-talentsoft') {
+          } else if (
+            this.usuario?.role !== 'ADMIN_CANELA, default-roles-talentsoft'
+          ) {
             localStorage.setItem('username', this.username);
             this.router.navigate(['/planes-canela']); //Cambiar a '/canela/planes' si se quiere iniciar en la otra pagina
           }
