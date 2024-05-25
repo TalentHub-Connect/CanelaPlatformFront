@@ -20,14 +20,13 @@ export class PerfilPersonalComponent implements OnInit {
   perfil: PerfilDto | undefined;
 
   username = localStorage.getItem('username');
+
   ngOnInit(): void {
     console.log('.........' + this.username);
     if (this.username) {
-      this.PerfilService.findByUsername(this.username).subscribe(
-        (perfilDto) => {
-          console.log('Perfil encontrado:', perfilDto);
-        }
-      );
+      this.PerfilService.findByUsername(this.username).subscribe((perfil) => {
+        console.log('Perfil encontrado:', perfil);
+      });
     }
     /*  
     this.route.paramMap

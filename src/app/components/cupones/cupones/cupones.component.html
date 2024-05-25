@@ -37,40 +37,43 @@
                     </div>
                 </div>
 
-                <div class="mesa-ayuda-hijo">
+                <!-- src/app/coupons/coupons.component.html -->
+                <div class="coupon-container">
                     <table>
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Nombre del Cupón</th>
-                                <th>Descripción</th>
-                                <th>Fecha de Expiración</th>
-                                <th>Status</th>
-                                <th>Descuento</th>
-                                <th>Compañía</th>
-                                <th>Acciones</th>
+                                <th>Nombre</th>
+                                <th>Descripción del cupon</th>
+                                <th>Fecha de expiracion</th>
+                                <th>Estado</th>
+                                <th>Compañia</th>
+                                <th>Porcentaje de descuento</th>
+                                <th>Acción</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let cupon of coupons">
-                                <td>{{ cupon.id }}</td>
-                                <td>{{ cupon.name }}</td>
-                                <td>{{ cupon.description }}</td>
-                                <td>{{ cupon.expirationdate }}</td>
-                                <td>{{ cupon.status }}</td>
-                                <td>{{ cupon.discountrate }}</td>
-                                <td>{{ cupon.companyId }}</td>
+                            <tr *ngFor="let coupon of coupons">
+                                <td>{{ coupon.id }}</td>
+                                <td>{{ coupon.name }}</td>
+                                <td>{{ coupon.description }}</td>
+                                <td>{{ coupon.expirationdate }}</td>
+                                <td>{{ coupon.status }}</td>
+                                <td>{{ coupon.companyId }}</td>
+                                <td>{{ coupon.discountrate }}</td>
                                 <td>
-                                    <a [routerLink]="['/canela/cupon-detalle', cupon.id]" class="btn">Ver cupón</a>
+                                    <button (click)="viewCoupon(coupon.id)">View</button>
+                                    <button (click)="deleteCoupon(coupon.id)">Delete</button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+
+                    <div class="button-container">
+                        <button class="add-coupon-btn" (click)="goToAddCoupon()">Agregar Cupón</button>
+                      </div>
                 </div>
 
-                <div class="agregar-cupon">
-                    <a [routerLink]="['/canela/crear-cupon']" class="btn-agregar-cupon">Agregar Cupón</a>
-                </div>
             </div>
         </div>
     </div>

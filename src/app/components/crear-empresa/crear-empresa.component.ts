@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { EmpresaService } from 'src/app/service/empresa.service';
+import { SuscripcioService } from 'src/app/service/suscripcio.service';
 import { EmpresaDto } from 'src/app/model/empresa-dto';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SuscripcionDto } from 'src/app/model/suscripcion-dto';
 
 @Component({
   selector: 'app-crear-empresa',
@@ -9,56 +10,80 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './crear-empresa.component.css',
 })
 export class CrearEmpresaComponent {
-  constructor(private EmpresaService: EmpresaService, private router: Router) {}
-  nit: number | undefined;
-  nombre: string | undefined;
-  phone: number | undefined;
-  maxNumWorker: number | undefined;
-  direccion: string | undefined;
-  fechaFinal: Date | undefined;
-  correo: string | undefined;
-  entradaStatus: string | undefined;
+  constructor(
+    private SuscripcioService: SuscripcioService,
+    private router: Router
+  ) {}
 
-  nuevaEmpresa: EmpresaDto | undefined;
+  id: number | undefined;
+  nameCompany: string | undefined;
+  nit: number | undefined;
+  address: string | undefined;
+  email: string | undefined;
+  phoneCompany: number | undefined;
+  nameLegalRepresentative: string | undefined;
+  idLegalRepresentative: number | undefined;
+  linkDate: string | undefined;
+  subscriptionEndDate: Date | undefined;
+  numWorkers: number | undefined;
+  status: string | undefined;
+
+  nuevaSuscripcion: SuscripcionDto | undefined;
 
   ngOnInit(): void {}
 
   crearEmpresa() {
-    // let NIT = this.nit; TODO
-    // let nombre = this.nombre;
-    // let phone = this.phone;
-    // let maxNumWorker = this.maxNumWorker;
-    // let direccion = this.direccion;
-    // let fechaFinal = this.fechaFinal;
-    // let correo = this.correo;
-    // let status = this.entradaStatus;
-    // if (
-    //   nombre != undefined &&
-    //   nombre != ' ' &&
-    //   NIT != undefined &&
-    //   phone != undefined &&
-    //   maxNumWorker != undefined &&
-    //   direccion != undefined &&
-    //   direccion != ' ' &&
-    //   fechaFinal != undefined &&
-    //   correo != undefined &&
-    //   correo != ' ' &&
-    //   status != undefined
-    // ) {
-    //   let empresaNueva = new EmpresaDto(
-    //     NIT,
-    //     nombre,
-    //     phone,
-    //     maxNumWorker,
-    //     direccion,
-    //     fechaFinal,
-    //     correo,
-    //     status
-    //   );
-    //   this.EmpresaService.guardarEmpresa(empresaNueva).subscribe((result) => {
-    //     this.router.navigate(['/canela/suscripciones']);
-    //   });
-    // }
+    let id = this.id;
+    let nombre = this.nameCompany;
+    let NIT = this.nit;
+    let direccion = this.address;
+    let correo = this.email;
+    let phone = this.phoneCompany;
+    let nameLegalRepresentative = this.nameLegalRepresentative;
+    let idLegalRepresentative = this.idLegalRepresentative;
+    let linkDate = this.linkDate;
+    let subscriptionEndDate = this.subscriptionEndDate;
+    let maxNumWorker = this.numWorkers;
+    let status = this.status;
+
+    if (
+      id != undefined &&
+      nombre != undefined &&
+      nombre != ' ' &&
+      NIT != undefined &&
+      phone != undefined &&
+      maxNumWorker != undefined &&
+      direccion != undefined &&
+      direccion != ' ' &&
+      nameLegalRepresentative != '' &&
+      nameLegalRepresentative != undefined &&
+      idLegalRepresentative != undefined &&
+      linkDate != undefined &&
+      subscriptionEndDate != undefined &&
+      correo != undefined &&
+      correo != ' ' &&
+      status != undefined
+    ) {
+      let nuevaSuscripcion = new SuscripcionDto(
+        id,
+        nombre,
+        NIT,
+        direccion,
+        correo,
+        phone,
+        nameLegalRepresentative,
+        idLegalRepresentative,
+        linkDate,
+        subscriptionEndDate,
+        maxNumWorker,
+        status
+      );
+      this.SuscripcioService.createSuscripcion(nuevaSuscripcion).subscribe(
+        (result) => {
+          this.router.navigate(['/canela/suscripciones']);
+        }
+      );
+    }
   }
   volver() {
     this.router.navigate(['/canela/suscripciones']);

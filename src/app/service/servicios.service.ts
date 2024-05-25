@@ -4,12 +4,10 @@ import { Servicio } from '../model/servicio';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ServiciosService {
-
-
-  private apiUrl = 'http://localhost:8080/services';
+  private apiUrl = 'https://modulocuentasservicios-qa.up.railway.app/services';
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -19,7 +17,27 @@ export class ServiciosService {
 
   constructor(private http: HttpClient) {}
 
-  getServicio(): Observable<Servicio[]> {
-    return this.http.get<Servicio[]>(this.apiUrl, this.httpOptions);
+  getAllServices(): Observable<Servicio[]> {
+    return this.http.get<Servicio[]>(this.apiUrl);
+  }
+
+  getServiceById(id: number): Observable<Servicio> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Servicio>(url);
+  }
+
+  createService(service: Servicio): Observable<Servicio> {
+    return this.http.post<Servicio>(this.apiUrl, service);
+  }
+
+  updateService(id: number, service: Servicio): Observable<Servicio> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.put<Servicio>(url, service);
+  }
+
+  deleteService(id: number): Observable<void> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<void>(url);
   }
 }
+

@@ -1,33 +1,43 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cupon } from '../model/cupon';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CuponesService {
-  private baseUrl = 'http://localhost:8080/coupons'; // Ajusta la URL base según sea necesario
+  private apiUrl = environment.URLCUPONES; // Cambia esto según tu configuración
 
-  constructor(private http: HttpClient) { }
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
+
+  constructor(private http: HttpClient) {}
 
   getAllCoupons(): Observable<Cupon[]> {
-    return this.http.get<Cupon[]>(this.baseUrl);
+    return this.http.get<Cupon[]>(this.apiUrl);
   }
 
-  getCouponById(id: number): Observable<Cupon> {
-    return this.http.get<Cupon>(`${this.baseUrl}/${id}`);
+  getCouponById(couponId: number): Observable<Cupon> {
+    const url = `${this.apiUrl}/${couponId}`;
+    return this.http.get<Cupon>(url);
   }
 
   createCoupon(coupon: Cupon): Observable<Cupon> {
-    return this.http.post<Cupon>(this.baseUrl, coupon);
+    return this.http.post<Cupon>(this.apiUrl, coupon, this.httpOptions);
   }
 
-  updateCoupon(id: number, coupon: Cupon): Observable<Cupon> {
-    return this.http.put<Cupon>(`${this.baseUrl}/${id}`, coupon);
+  updateCoupon(couponId: number, coupon: Cupon): Observable<Cupon> {
+    const url = `${this.apiUrl}/${couponId}`;
+    return this.http.put<Cupon>(url, coupon, this.httpOptions);
   }
 
-  deleteCoupon(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  deleteCoupon(couponId: number): Observable<void> {
+    const url = `${this.apiUrl}/${couponId}`;
+    return this.http.delete<void>(url, this.httpOptions);
   }
 }

@@ -25,4 +25,8 @@ export class UserService {
       responseType: 'text' as 'json',
     });
   }
+  getUserRole(email: String | null) {
+    const url = `${environment.URLUSUARIOS}`;
+    return this.http.post<User>(url, email);
+  }
 }

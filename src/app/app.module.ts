@@ -28,7 +28,9 @@ import { ServiciosComponent } from './components/servicios/servicios/servicios.c
 import { CuponesComponent } from './components/cupones/cupones/cupones.component';
 import { CrearServicioComponent } from './components/crear-servicio/crear-servicio.component';
 import { CuponDetalleComponent } from './components/cupon-detalle/cupon-detalle/cupon-detalle.component';
-import { CrearCuponComponent } from './components/crear-cupon/crear-cupon/crear-cupon.component';
+import { CrearCuponComponent } from './components/crear-cupon/crear-cupon.component';
+import { DetalleServicioComponent } from './componenets/detalle-servicio/detalle-servicio.component';
+
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import { CrearCuponComponent } from './components/crear-cupon/crear-cupon/crear-
     CrearServicioComponent,
     CuponDetalleComponent,
     CrearCuponComponent,
+    DetalleServicioComponent
+    
   ],
   imports: [
     BrowserModule,

@@ -1,12 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {UsuarioPermisoDto} from 'src/app/model/usuario-permiso-dto';
-import {PermisosUsuarioService} from 'src/app/service/permisos-usuario.service';
-import {User} from 'src/app/shared/model/auth/user';
-import {UserService} from '../../shared/model/user.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UsuarioPermisoDto } from 'src/app/model/usuario-permiso-dto';
+import { PermisosUsuarioService } from 'src/app/service/permisos-usuario.service';
+import { User } from 'src/app/shared/model/auth/user';
+import { UserService } from '../../shared/model/user.service';
 
-import Swal from "sweetalert2";
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-permisos-usuario',
@@ -17,9 +16,9 @@ export class PermisosUsuarioComponent implements OnInit {
   constructor(
     private router: Router,
     private permisosUsuarioService: PermisosUsuarioService
-  ) {
-  }
+  ) {}
 
+  usuarioKeycloak: string[] | undefined;
   usuarios: UsuarioPermisoDto[] | undefined;
   roles: string[] | undefined;
   rolesPorUsuario: { [key: string]: string[] } = {};
@@ -27,21 +26,19 @@ export class PermisosUsuarioComponent implements OnInit {
   username: string | null = null;
 
   ngOnInit(): void {
-
     let timerInterval: any;
     Swal.fire({
-      title: "Cargando...",
+      title: 'Cargando...',
       timer: 3000,
       timerProgressBar: true,
       didOpen: () => {
         Swal.showLoading(null);
         let timer: any;
-        timerInterval = setInterval(() => {
-        }, 100);
+        timerInterval = setInterval(() => {}, 100);
       },
       willClose: () => {
         clearInterval(timerInterval);
-      }
+      },
     }).then((result) => {
       if (result.dismiss === Swal.DismissReason.timer) {
       }
@@ -57,22 +54,18 @@ export class PermisosUsuarioComponent implements OnInit {
       Swal.fire({
         icon: 'warning',
         title: 'Gestión de usuarios',
-        text: "No olvide guardar los cambios al finalizar",
+        text: 'No olvide guardar los cambios al finalizar',
         confirmButtonText: 'Aceptar',
         confirmButtonColor: '#963e6c',
       });
     });
-
   }
 
-  enableMarketing(id: number) {
-  }
+  enableMarketing(id: number) {}
 
-  enableFinanzas(id: number) {
-  }
+  enableFinanzas(id: number) {}
 
-  enableServer(id: number) {
-  }
+  enableServer(id: number) {}
 
   public handleCheckboxChange(
     event: Event,
@@ -97,18 +90,18 @@ export class PermisosUsuarioComponent implements OnInit {
     } else {
       let rolesFinales: string[] = [];
       this.rolesPorUsuario[username].forEach((rolInner) => {
-          if (rolInner != rol) {
-            rolesFinales.push(rolInner);
-          }
+        if (rolInner != rol) {
+          rolesFinales.push(rolInner);
         }
-      )
+      });
       this.rolesPorUsuario[username] = rolesFinales;
     }
 
     console.log(
-      "Roles actualizados para el usuario con ID : " +
-      this.username + " Sus roles son: " +
-      this.rolesPorUsuario[username]
+      'Roles actualizados para el usuario con ID : ' +
+        this.username +
+        ' Sus roles son: ' +
+        this.rolesPorUsuario[username]
     );
   }
 
@@ -116,49 +109,48 @@ export class PermisosUsuarioComponent implements OnInit {
     if (this.usuarios != undefined) {
       let timerInterval: any;
       Swal.fire({
-        title: "Guardando...",
+        title: 'Guardando...',
         timer: 2000,
         timerProgressBar: true,
         didOpen: () => {
           Swal.showLoading(null);
           let timer: any;
-          timerInterval = setInterval(() => {
-          }, 100);
+          timerInterval = setInterval(() => {}, 100);
         },
         willClose: () => {
           clearInterval(timerInterval);
-        }
+        },
       }).then((result) => {
         if (result.dismiss === Swal.DismissReason.timer) {
-          console.log("I was closed by the timer");
+          console.log('I was closed by the timer');
         }
       });
 
       this.usuarios.forEach((user) => {
         user.roles = this.rolesPorUsuario[user.username];
       });
-      this.permisosUsuarioService.saveAllUsers(this.usuarios).subscribe(result => {
-        if (!result) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Gestión de usuarios',
-            text: "Ha ocurrido un error al guardar los usuarios",
-            confirmButtonText: 'Aceptar',
-            confirmButtonColor: '#963e6c',
-          });
-        } else {
-          Swal.fire({
-            icon: 'success',
-            title: 'Gestión de usuarios',
-            text: "Cambios guardados correctamente",
-            confirmButtonText: 'Aceptar',
-            confirmButtonColor: '#963e6c',
-          });
-        }
-      });
+      this.permisosUsuarioService
+        .saveAllUsers(this.usuarios)
+        .subscribe((result) => {
+          if (!result) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Gestión de usuarios',
+              text: 'Ha ocurrido un error al guardar los usuarios',
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#963e6c',
+            });
+          } else {
+            Swal.fire({
+              icon: 'success',
+              title: 'Gestión de usuarios',
+              text: 'Cambios guardados correctamente',
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#963e6c',
+            });
+          }
+        });
     }
-
-
   }
 
   /*
