@@ -47,7 +47,7 @@ const routes: Routes = [
       {
         path: 'canela/usuarios',
         component: UsuariosComponent,
-        canActivate: [AuthGuard],
+        //canActivate: [AuthGuard],
       },
       {
         path: 'canela/logs',

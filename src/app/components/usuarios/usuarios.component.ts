@@ -6,6 +6,7 @@ import { UsuarioPermisoDto } from 'src/app/model/usuario-permiso-dto';
 import { UsuarioRegistroDto } from 'src/app/model/usuario-registro-dto';
 import { User } from 'src/app/shared/model/auth/user';
 import { UserService } from '../../shared/model/user.service';
+import {Employee} from "../../model/employee";
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
@@ -81,8 +82,46 @@ export class UsuariosComponent {
         .createUser(this.nuevoUsuarioAuth, this.nuevoUsuarioAuth.role, token)
         .subscribe({
           next: (data) => {
-            console.log('Respuesta recibida:', data);
-            this.router.navigate(['/canela/permisos']);
+            console.log('Respuesta recibida:', data );
+            this.nuevoUsuarioAuth.username = data
+            this.nuevoUsuarioAuth.email = data
+            let companyId : number = 0;
+            let companyIdStr =localStorage.getItem("companyid");
+            if(companyIdStr!=null){
+              companyId = +companyIdStr;
+            }
+            let empleado = new Employee(
+              -1,
+              this.nuevoUsuarioAuth.firstName,
+              this.nuevoUsuarioAuth.lastName,
+              "",
+              -1,
+              -1,
+              -1,
+              -1,
+              companyId,
+              ""
+            );
+            console.log(empleado);
+            this.userService.agregarEmpleado(empleado).subscribe(response => {
+                console.log('Usuario agregado correctamente:', response);
+                //this.router.navigate(['/canela/permisos']);
+              },
+              error => {
+                console.error('Error al agregar Usuario:', error);
+                //this.router.navigate(['/canela/permisos']);
+              });
+            this.userService.agregarUsuario(this.nuevoUsuarioAuth).subscribe(
+              response => {
+                console.log('Usuario agregado correctamente:', response);
+                this.router.navigate(['/canela/permisos']);
+              },
+              error => {
+                console.error('Error al agregar Usuario:', error);
+                this.router.navigate(['/canela/permisos']);
+              }
+            );
+            //this.router.navigate(['/canela/permisos']);
           },
           error: (err) => {
             console.error('Error al enviar datos:', err);
