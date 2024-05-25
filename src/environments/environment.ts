@@ -8,5 +8,6 @@ export const environment = {
   URLSUSCRIPCION:
     'https://modulocuentassubscripciones-qa.up.railway.app/subscriptions',
   // Cambiarla por el API GATEWAY A BACK
-  URLUSUARIOS: '',
+  URLUSUARIOS: 'https://canelausermanagementmicroservice-qa.up.railway.app/',
+  URLPERFIL: '',
 };
