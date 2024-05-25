@@ -4,12 +4,10 @@ import { Servicio } from '../model/servicio';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ServiciosService {
-
-
-  private apiUrl = 'http://localhost:8080/services';
+  private apiUrl = 'https://modulocuentasservicios-qa.up.railway.app/services';
 
   private httpOptions = {
     headers: new HttpHeaders({

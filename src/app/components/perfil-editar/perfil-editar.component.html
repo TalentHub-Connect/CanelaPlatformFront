@@ -37,7 +37,7 @@
                             <div class="row">
                                 <div class="col-md-6 info1">
                                     <div class="mb-3">
-                                        <p><b class="subtitulo">Nuevo nombre: </b> <input type="text" [(ngModel)]="entradanNombre"></p>
+                                        <p><b class="subtitulo">Nuevo nombre: </b> {{perfil?.name}}</p>
                                     </div>
                                     <div class="mb-3">
                                         <p><b class="subtitulo">Usuario: </b> {{perfil?.username}}</p>
@@ -57,10 +57,10 @@
                                         <p><b class="subtitulo">Nuevo teléfono: </b> <input type="number"   [(ngModel)]="entradaTelefono"></p>
                                     </div>
                                     <div class="mb-3">
-                                        <p><b class="subtitulo">Nuevo nombre: </b> <input type="text"   [(ngModel)]="entradaNombreContacto"></p>
+                                        <p><b class="subtitulo">Nuevo nombre contacto: </b> <input type="text"   [(ngModel)]="entradaNombreContacto"></p>
                                     </div>
                                     <div class="mb-3">
-                                        <p><b class="subtitulo">Nuevo teléfono: </b> <input type="number"   [(ngModel)]="entradanTelContacto"></p>
+                                        <p><b class="subtitulo">Nuevo teléfono contacto : </b> <input type="number"   [(ngModel)]="entradanTelContacto"></p>
                                     </div>
                                 </div>
                             </div>
