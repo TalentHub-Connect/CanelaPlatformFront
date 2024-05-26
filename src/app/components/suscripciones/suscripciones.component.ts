@@ -36,7 +36,7 @@ export class SuscripcionesComponent implements OnInit {
         console.log('I was closed by the timer');
       }
     });
-    /*
+
     this.SuscripcioService.getAllSuscripcion().subscribe(
       (data) => {
         console.log(data);
@@ -46,7 +46,7 @@ export class SuscripcionesComponent implements OnInit {
         console.error('Ocurrió un error al obtener los planes:', error);
       }
     );
-    */
+
   }
 
   cargarSuscripciones() {
