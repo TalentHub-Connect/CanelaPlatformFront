@@ -38,7 +38,7 @@ export class UserService {
 
   agregarEmpleado(empleado: Employee) {
     //return this.http.post<any>(`https://empresasnominamicroservice-qa.up.railway.app/employee/createEmployee`, empleado);
-    return this.http.post<any>(`http://localhost:8080/employee/createEmployee`, empleado);
+    return this.http.post<any>(`https://empresasnominamicroservice-qa.up.railway.app/employee/createEmployee`, empleado);
 
   }
 
