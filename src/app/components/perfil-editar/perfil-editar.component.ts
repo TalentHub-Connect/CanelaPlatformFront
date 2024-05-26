@@ -6,6 +6,7 @@ import { PerfilEditar } from 'src/app/model/perfil-editar';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+import {Employee} from "../../model/employee";
 
 @Component({
   selector: 'app-perfil-editar',
@@ -17,13 +18,11 @@ export class PerfilEditarComponent implements OnInit {
     private router: Router,
     private PerfilService: PerfilService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+  }
 
-  perfil: PerfilDto | undefined;
-  perfilEditar: PerfilEditar | undefined;
-  entradaCedula: number | undefined;
-  entradaDireccion: string | undefined;
-  entradaTelefono: number | undefined;
+  perfil: Employee | undefined;
+  entradaTelefono: string | undefined;
   entradaNombreContacto: string | undefined;
   entradanTelContacto: number | undefined;
 
@@ -34,40 +33,31 @@ export class PerfilEditarComponent implements OnInit {
     if (this.username) {
       this.PerfilService.findByUsername(this.username).subscribe((perfil) => {
         console.log('Perfil encontrado:', perfil);
+        this.perfil = perfil
       });
     }
   }
 
   editar() {
-    let inputIdentification = this.entradaCedula;
-    let inputAdress = this.entradaDireccion;
     let inputNumberPhone = this.entradaTelefono;
     let inputEmergencyName = this.entradaNombreContacto;
     let inputEmergencyContact = this.entradanTelContacto;
-
-    if (
-      inputIdentification != undefined &&
-      inputAdress != undefined &&
-      inputAdress != '' &&
-      inputNumberPhone != undefined &&
-      inputEmergencyName != undefined &&
-      inputEmergencyName != '' &&
-      inputEmergencyContact != undefined
-    ) {
-      if (this.perfilEditar != undefined) {
-        this.perfilEditar.identificacion = inputIdentification;
-        this.perfilEditar.address = inputAdress;
-        this.perfilEditar.numberPhone = inputNumberPhone;
-        this.perfilEditar.emergencycontactname = inputEmergencyName;
-        this.perfilEditar.emergencyContact = inputEmergencyContact;
-
-        this.PerfilService.modificarPerfil(
-          this.username,
-          this.perfilEditar
-        ).subscribe((result) => {
-          this.router.navigate(['/canela/perfil/view/:id']);
-        });
+    if(this.perfil){
+      if(inputNumberPhone){
+        this.perfil.phoneNumber = inputNumberPhone;
       }
+      if(inputEmergencyContact){
+        this.perfil.emergencycontact = inputEmergencyContact;
+      }
+      if(inputEmergencyName){
+        this.perfil.nameemergencycontact = inputEmergencyName;
+      }
+      this.PerfilService.modificarPerfil(
+        this.perfil,
+        this.perfil.id
+      ).subscribe((result) => {
+        this.router.navigate(['/canela/perfil/view/:id']);
+      });
     }
   }
 
