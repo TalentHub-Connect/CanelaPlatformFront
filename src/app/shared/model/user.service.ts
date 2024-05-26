@@ -31,6 +31,7 @@ export class UserService {
     return this.http.post<User>(url, email);
   }
 
+
   agregarUsuario(usuario: User): Observable<any> {
     return this.http.post<any>(`https://canelausermanagementmicroservice-qa.up.railway.app/user/save`, usuario);
   }
@@ -40,4 +41,5 @@ export class UserService {
     return this.http.post<any>(`http://localhost:8080/employee/createEmployee`, empleado);
 
   }
+
 }

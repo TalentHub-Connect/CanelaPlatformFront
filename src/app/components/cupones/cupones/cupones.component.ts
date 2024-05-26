@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Cupon } from 'src/app/model/cupon';
 import { CuponesService } from 'src/app/service/cupones.service';
+import { EmpresaService } from 'src/app/service/empresa-editar.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cupones',
@@ -10,66 +13,61 @@ import { CuponesService } from 'src/app/service/cupones.service';
   styleUrl: './cupones.component.css'
 })
 export class CuponesComponent implements OnInit {
-
   coupons: Cupon[] = [];
-  selectedCoupon: Cupon | null = null;
+   empresas: { [key: number]: string } = {};
 
-  constructor(private cuponesService: CuponesService) { }
+  constructor(private couponService: CuponesService, private router: Router, private empresaService: EmpresaService) {}
 
   ngOnInit(): void {
-    this.getAllCoupons();
+    this.loadCoupons();
   }
 
-  getAllCoupons(): void {
-    this.cuponesService.getAllCoupons().subscribe(
-      (data: Cupon[]) => {
-        this.coupons = data;
-      },
-      (error) => {
-        console.error('Error fetching coupons', error);
+  loadCoupons(): void {
+    this.couponService.getAllCoupons().subscribe((data: Cupon[]) => {
+      this.coupons = data;
+    });
+  }
+  loadEmpresas(): void {
+    this.empresaService.getEmpresas().subscribe((data: any) => {
+      data.forEach((empresa: any) => {
+        this.empresas[empresa.id] = empresa.name;
+      });
+    });
+  }
+
+  viewCoupon(id: number): void {
+    this.router.navigate(['canela/detalle-cupon/'+ id]);
+  }
+
+  confirmDelete(id: number): void {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¡No podrás revertir esto!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'No, cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deleteCoupon(id);
       }
-    );
-  }
-
-  selectCoupon(coupon: Cupon): void {
-    this.selectedCoupon = coupon;
-  }
-
-  createCoupon(coupon: Cupon): void {
-    this.cuponesService.createCoupon(coupon).subscribe(
-      (data: Cupon) => {
-        this.coupons.push(data);
-      },
-      (error) => {
-        console.error('Error creating coupon', error);
-      }
-    );
-  }
-
-  updateCoupon(coupon: Cupon): void {
-    if (coupon.id) {
-      this.cuponesService.updateCoupon(coupon.id, coupon).subscribe(
-        (data: Cupon) => {
-          const index = this.coupons.findIndex(c => c.id === coupon.id);
-          if (index !== -1) {
-            this.coupons[index] = data;
-          }
-        },
-        (error) => {
-          console.error('Error updating coupon', error);
-        }
-      );
-    }
+    });
   }
 
   deleteCoupon(id: number): void {
-    this.cuponesService.deleteCoupon(id).subscribe(
-      () => {
-        this.coupons = this.coupons.filter(c => c.id !== id);
-      },
-      (error) => {
-        console.error('Error deleting coupon', error);
-      }
-    );
+    this.couponService.deleteCoupon(id).subscribe(() => {
+      this.loadCoupons(); // Recarga la lista de cupones después de eliminar
+      Swal.fire(
+        '¡Eliminado!',
+        'El cupón ha sido eliminado.',
+        'success'
+      );
+    });
+  }
+
+  goToAddCoupon(): void {
+    this.router.navigate(['/canela/crear-cupon']);
   }
 }

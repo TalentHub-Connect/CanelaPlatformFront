@@ -7,7 +7,7 @@ import { PlanesDto } from '../model/planes-dto';
   providedIn: 'root',
 })
 export class InfoPlanesService {
-  private apiUrl = 'http://localhost:8080/plans';
+  private apiUrl = 'https://canelaaccounmanagermicroservice-qa.up.railway.app/plan/list';
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -20,7 +20,7 @@ export class InfoPlanesService {
   guardaPlan(nuevoPlan: PlanesDto): Observable<PlanesDto> {
     console.log(nuevoPlan);
     return this.http.post<PlanesDto>(
-      `${this.apiUrl}/add`,
+      `https://canelaaccounmanagermicroservice-qa.up.railway.app/plan`,
       nuevoPlan,
       this.httpOptions
     );
@@ -28,14 +28,14 @@ export class InfoPlanesService {
 
   modificarPlan(plan: PlanesDto): Observable<PlanesDto> {
     return this.http.put<PlanesDto>(
-      `http://localhost:8080/plans/{id}`,
+      `https://canelaaccounmanagermicroservice-qa.up.railway.app/plan/{id}`,
       plan,
       this.httpOptions
     );
   }
 
   findById(id: number) {
-    return this.http.get<PlanesDto>(`http://localhost:8080/plans/{id}`);
+    return this.http.get<PlanesDto>(`https://canelaaccounmanagermicroservice-qa.up.railway.app/plan/`+ id);
   }
 
   findAll(): Observable<PlanesDto[]> {

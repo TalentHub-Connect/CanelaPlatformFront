@@ -28,7 +28,10 @@ import { CuponesComponent } from './components/cupones/cupones/cupones.component
 import { CrearServicioComponent } from './components/crear-servicio/crear-servicio.component';
 import { CuponDetalleComponent } from './components/cupon-detalle/cupon-detalle/cupon-detalle.component';
 import { AuthGuard } from './shared/auth/auth.guard';
-import { CrearCuponComponent } from './components/crear-cupon/crear-cupon/crear-cupon.component';
+import { CrearCuponComponent } from './components/crear-cupon/crear-cupon.component';
+import { DetalleServicioComponent } from './components/detalle-servicio/detalle-servicio.component';
+
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -47,11 +50,10 @@ const routes: Routes = [
       {
         path: 'canela/usuarios',
         component: UsuariosComponent,
-        //canActivate: [AuthGuard],
       },
       {
         path: 'canela/logs',
-        component: LogsComponent,
+        component: LogsComponent, 
       },
       {
         path: 'canela/mesa-ayuda',
@@ -83,6 +85,16 @@ const routes: Routes = [
       },
 
       {
+
+        path: 'canela/detalle-servicio/:id',
+        component: DetalleServicioComponent,
+      },
+
+      {
+        path: 'canela/detalle-cupon/:id', component: CuponDetalleComponent
+      },
+      
+      {
         path: 'canela/planes',
         component: GestionPlanesComponent,
       },
@@ -91,6 +103,7 @@ const routes: Routes = [
         path: 'planes-canela',
         component: PlanesCanelaComponent,
       },
+
       {
         path: 'editar-plan/:id',
         component: EditarPlanComponent,

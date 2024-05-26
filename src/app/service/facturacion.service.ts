@@ -7,7 +7,7 @@ import { VerEmpresa } from '../model/ver-empresa';
   providedIn: 'root',
 })
 export class FacturacionService {
-  private apiUrl = 'http://localhost:8080/facturations';
+  private apiUrl = 'https://canelaaccounmanagermicroservice-qa.up.railway.app/facturation';
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -18,7 +18,7 @@ export class FacturacionService {
   constructor(private http: HttpClient) {}
 
   findById(id: number) {
-    return this.http.get<VerEmpresa>(`http://localhost:8080/facturation/{id}`);
+    return this.http.get<VerEmpresa>(`https://canelaaccounmanagermicroservice-qa.up.railway.app/facturation/company/`+ id);
   }
 
   getEmpresas(): Observable<VerEmpresa[]> {
