@@ -18,13 +18,13 @@ export class PermisosUsuarioService {
 
   findAllUsers(): Observable<UsuarioPermisoDto[]> {
     return this.http.get<UsuarioPermisoDto[]>(
-      'http://localhost:8083/user/find_all_with_roles'
+      'https://canelausermanagementmicroservice-qa.up.railway.app/user/find_all_with_roles'
     );
   }
 
 
   saveAllUsers(usuarios: UsuarioPermisoDto[]) {
-    return this.http.post<UsuarioPermisoDto[]>("http://localhost:8762/rol/update_all_users_roles", usuarios);
+    return this.http.post<UsuarioPermisoDto[]>("https://canelausermanagementmicroservice-qa.up.railway.app/rol/update_all_users_roles", usuarios);
 
   }
 }

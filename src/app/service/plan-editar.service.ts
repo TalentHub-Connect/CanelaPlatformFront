@@ -28,18 +28,18 @@ export class InfoPlanesService {
 
   modificarPlan(plan: PlanEditar): Observable<PlanEditar> {
     return this.http.put<PlanEditar>(
-      `http://localhost:8080/plans/{id}`,
+      `https://canelaaccounmanagermicroservice-qa.up.railway.app/plans/{id}`,
       plan,
       this.httpOptions
     );
   }
 
   findById(id: number) {
-    return this.http.get<PlanEditar>(`http://localhost:8080/plans/{id}`);
+    return this.http.get<PlanEditar>(`https://canelaaccounmanagermicroservice-qa.up.railway.app/plans/{id}`);
   }
 
   findAll(): Observable<PlanEditar[]> {
-    return this.http.get<PlanEditar[]>(`http://localhost:8080/plans`);
+    return this.http.get<PlanEditar[]>(`https://canelaaccounmanagermicroservice-qa.up.railway.app/plans`);
   }
 
   getPlanes(): Observable<PlanEditar[]> {
