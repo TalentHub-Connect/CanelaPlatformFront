@@ -85,6 +85,7 @@ const routes: Routes = [
       },
 
       {
+
         path: 'canela/detalle-servicio/:id',
         component: DetalleServicioComponent,
       },
@@ -102,6 +103,7 @@ const routes: Routes = [
         path: 'planes-canela',
         component: PlanesCanelaComponent,
       },
+
       {
         path: 'editar-plan/:id',
         component: EditarPlanComponent,
@@ -169,4 +171,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

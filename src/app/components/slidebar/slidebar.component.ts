@@ -7,9 +7,15 @@ import { SlidebarService } from 'src/app/service/slidebar.service';
   templateUrl: './slidebar.component.html',
   styleUrls: ['./slidebar.component.css'],
 })
+
 export class SlidebarComponent  implements OnInit {
   nombreEmpresa: string = '';
-  modulos: { id: number, description: string, rolId: number, status: string }[] = [];
+  modulos: {
+    id: number;
+    description: string;
+    rolId: number;
+    status: string;
+  }[] = [];
   roles: string[] = [];
 
   showAdminCard: boolean = false;
@@ -17,8 +23,8 @@ export class SlidebarComponent  implements OnInit {
   showMarketingCard: boolean = false;
   showCountCard: boolean = false;
 
-
-  constructor(private sidebarService: SidebarService) { }
+  constructor(private sidebarService: SlidebarService) {}
+  /*
 
   ngOnInit(): void {
     const roleStr = localStorage.getItem('role');
@@ -78,7 +84,7 @@ export class SlidebarComponent  implements OnInit {
       }
     });
   }
-
+*/
   getRoleId(roleName: string): number {
     const roleMap: { [key: string]: number } = {
       'ADMIN': 1,
@@ -97,7 +103,6 @@ export class SlidebarComponent  implements OnInit {
     this.showSupportCard =isAdmin|| this.modulos.some(modulo => modulo.description === 'SOPORTE');
     this.showMarketingCard = isAdmin||this.modulos.some(modulo => modulo.description === 'MARKETING');
     this.showCountCard = isAdmin|| this.modulos.some(modulo => modulo.description === 'COUNT');
-  
 
     console.log('Card visibility - Admin:', this.showAdminCard);
     console.log('Card visibility - Support:', this.showSupportCard);

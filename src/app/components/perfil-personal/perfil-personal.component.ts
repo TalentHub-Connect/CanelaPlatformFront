@@ -4,6 +4,7 @@ import { PerfilDto } from 'src/app/model/perfil-dto';
 import { PerfilService } from 'src/app/service/perfil.service';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import {Employee} from "../../model/employee";
 
 @Component({
   selector: 'app-perfil-personal',
@@ -17,7 +18,7 @@ export class PerfilPersonalComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  perfil: PerfilDto | undefined;
+  perfil: Employee | undefined;
 
   username = localStorage.getItem('username');
 
@@ -26,9 +27,10 @@ export class PerfilPersonalComponent implements OnInit {
     if (this.username) {
       this.PerfilService.findByUsername(this.username).subscribe((perfil) => {
         console.log('Perfil encontrado:', perfil);
+        this.perfil = perfil;
       });
     }
-    /*  
+    /*
     this.route.paramMap
       .pipe(
         switchMap((params) => this.PerfilService.findById(+params.get('id')!))

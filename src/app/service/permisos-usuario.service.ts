@@ -18,7 +18,7 @@ export class PermisosUsuarioService {
 
   findAllUsers(): Observable<UsuarioPermisoDto[]> {
     return this.http.get<UsuarioPermisoDto[]>(
-      'http://localhost:8762/user/find_all_with_roles'
+      'http://localhost:8083/user/find_all_with_roles'
     );
   }
 
