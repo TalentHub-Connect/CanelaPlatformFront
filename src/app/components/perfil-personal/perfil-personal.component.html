@@ -10,11 +10,11 @@
 <body>
 
     <div class="container-padre" >
-  
+
             <div class="col2">
-                <div class = "contenido">  
+                <div class = "contenido">
                     <div class="simple_container">
-                        
+
                         <!-- Contenedor del otro contenido -->
                         <div class="container cont1">
                             <div style="display: flex; align-items: center; height: 48px;">
@@ -31,7 +31,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="contTitulo" >
                         <div class="container-fluid m-3" style="width: 70%; height: 80%; border: 1px solid #ccc;background-color: #f3f0f2; border-radius: 18px;display: flex; align-items: center; ">
                             <h1 style="color: #963e6c; font-size: 4em; margin: 0 0 0 20px;">Mi perfil</h1>
@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="contInfo" >
-                            
+
                         <div class="container-fluid " style="width: 70%; height: 50%; border: 1px solid #ccc;background-color: #f3f0f2; border-radius: 15px;display: flex; align-items: center;">
 
                             <div class="row">
@@ -51,37 +51,34 @@
                                         <p><b class="subtitulo">Usuario: </b> {{perfil?.username}}</p>
                                     </div>
                                     <div class="mb-3">
-                                        <p><b class="subtitulo">Correo: </b> {{perfil?.email}}</p>
+                                        <p><b class="subtitulo">Correo: </b> {{perfil?.username}}</p>
                                     </div>
                                     <div class="mb-3">
-                                        <p><b class="subtitulo">Cedula: </b> {{perfil?.identificacion}}</p>
+                                        <p><b class="subtitulo">Cedula: </b> {{perfil?.id}}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6 info2">
                                     <div class="mb-3">
-                                        <p><b class="subtitulo">Dirección: </b> {{perfil?.address}}</p>
+                                        <p><b class="subtitulo">Telefono: </b>{{perfil?.phoneNumber}}</p>
                                     </div>
                                     <div class="mb-3">
-                                        <p><b class="subtitulo">Telefono: </b> {{perfil?.numberPhone}}</p>
+                                        <p><b class="subtitulo">Nombre contacto: </b> {{perfil?.nameemergencycontact}}</p>
                                     </div>
                                     <div class="mb-3">
-                                        <p><b class="subtitulo">Nombre contacto: </b> {{perfil?.emergencycontactname}}</p>
+                                        <p><b class="subtitulo">Teléfono contacto: </b>{{perfil?.emergencycontact}} </p>
                                     </div>
-                                    <div class="mb-3">
-                                        <p><b class="subtitulo">Teléfono contacto: </b> {{perfil?.emergencyContact}}</p>
-                                    </div>
-                                    
+
                                 </div>
                             </div>
-                                
- 
+
+
                         </div>
 
                         <button class="btn btn-plan" type="button" (click)="editarInformacion()">Editar</button>
 
                     </div>
                 </div>
-            </div>        
+            </div>
 
     </div>
 </body>

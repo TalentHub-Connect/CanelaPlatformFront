@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { PerfilDto } from '../model/perfil-dto';
 import { PerfilEditar } from '../model/perfil-editar';
 import { environment } from 'src/environments/environment';
+import {Employee} from "../model/employee";
 
 @Injectable({
   providedIn: 'root',
@@ -18,17 +19,17 @@ export class PerfilService {
   }
 
   findByUsername(username: string) {
-    return this.http.get<PerfilDto>(`${this.apiUrl}/${username}`);
+    return this.http.get<Employee>(`http://localhost:8080/employee/find_by_username/${username}`);
   }
 
   findById(id: number): Observable<PerfilDto> {
-    return this.http.get<PerfilDto>(`http://localhost:8080/users/{id}`);
+    return this.http.get<PerfilDto>(`http://localhost:8080/users/${id}`);
   }
 
   modificarPerfil(
-    username: string | null,
-    perfil: PerfilEditar
-  ): Observable<PerfilEditar> {
-    return this.http.put<PerfilEditar>(`${this.apiUrl}/${username}`, perfil);
+    perfil: Employee,
+    id : number
+  ): Observable<Employee> {
+    return this.http.put<Employee>(`http://localhost:8080/employee/updateEmployee/${id}`, perfil);
   }
 }

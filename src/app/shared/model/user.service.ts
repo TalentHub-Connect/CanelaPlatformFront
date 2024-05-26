@@ -32,10 +32,12 @@ export class UserService {
   }
 
   agregarUsuario(usuario: User): Observable<any> {
-    return this.http.post<any>(`https://canelaapigatewayback-qa.up.railway.app/user/save`, usuario);
+    return this.http.post<any>(`https://canelausermanagementmicroservice-qa.up.railway.app/user/save`, usuario);
   }
 
   agregarEmpleado(empleado: Employee) {
-    return this.http.post<any>(`https://empresasnominamicroservice-qa.up.railway.app/employee/createEmployee`, empleado);
+    //return this.http.post<any>(`https://empresasnominamicroservice-qa.up.railway.app/employee/createEmployee`, empleado);
+    return this.http.post<any>(`http://localhost:8080/employee/createEmployee`, empleado);
+
   }
 }

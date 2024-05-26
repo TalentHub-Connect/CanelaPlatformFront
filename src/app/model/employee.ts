@@ -11,6 +11,11 @@ export class Employee {
     public companyId : number | null,
     public department : string,
 
+    public username : string,
+
+    public emergencycontact : number,
+    public nameemergencycontact : string
+
   ){
 
   }

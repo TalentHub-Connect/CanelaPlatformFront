@@ -87,6 +87,7 @@ export class UsuariosComponent {
             this.nuevoUsuarioAuth.email = data
             let companyId : number = 0;
             let companyIdStr =localStorage.getItem("companyid");
+
             if(companyIdStr!=null){
               companyId = +companyIdStr;
             }
@@ -100,15 +101,18 @@ export class UsuariosComponent {
               -1,
               -1,
               companyId,
+              "",
+              this.nuevoUsuarioAuth.username,
+              0,
               ""
             );
             console.log(empleado);
             this.userService.agregarEmpleado(empleado).subscribe(response => {
-                console.log('Usuario agregado correctamente:', response);
+                console.log('Empleado agregado correctamente:', response);
                 //this.router.navigate(['/canela/permisos']);
               },
               error => {
-                console.error('Error al agregar Usuario:', error);
+                console.error('Error al agregar Empleado:', error);
                 //this.router.navigate(['/canela/permisos']);
               });
             this.userService.agregarUsuario(this.nuevoUsuarioAuth).subscribe(
