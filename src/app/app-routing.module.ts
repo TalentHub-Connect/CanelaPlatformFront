@@ -29,7 +29,8 @@ import { CrearServicioComponent } from './components/crear-servicio/crear-servic
 import { CuponDetalleComponent } from './components/cupon-detalle/cupon-detalle/cupon-detalle.component';
 import { AuthGuard } from './shared/auth/auth.guard';
 import { CrearCuponComponent } from './components/crear-cupon/crear-cupon.component';
-import { DetalleServicioComponent } from './componenets/detalle-servicio/detalle-servicio.component';
+import { DetalleServicioComponent } from './components/detalle-servicio/detalle-servicio.component';
+
 
 
 const routes: Routes = [
@@ -49,11 +50,10 @@ const routes: Routes = [
       {
         path: 'canela/usuarios',
         component: UsuariosComponent,
-        canActivate: [AuthGuard],
       },
       {
         path: 'canela/logs',
-        component: LogsComponent,
+        component: LogsComponent, 
       },
       {
         path: 'canela/mesa-ayuda',
@@ -83,9 +83,16 @@ const routes: Routes = [
         path: 'canela/crear-servicio',
         component: CrearServicioComponent,
       },
+
       {
-        path: 'canela/detalle-cupon/:id', component: DetalleServicioComponent
+        path: 'canela/detalle-servicio/:id',
+        component: DetalleServicioComponent,
       },
+
+      {
+        path: 'canela/detalle-cupon/:id', component: CuponDetalleComponent
+      },
+      
       {
         path: 'canela/planes',
         component: GestionPlanesComponent,

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ServiciosService {
-  private apiUrl = 'https://modulocuentasservicios-qa.up.railway.app/services';
+  private apiUrl = 'https://canelaaccounmanagermicroservice-qa.up.railway.app/services';
 
   private httpOptions = {
     headers: new HttpHeaders({

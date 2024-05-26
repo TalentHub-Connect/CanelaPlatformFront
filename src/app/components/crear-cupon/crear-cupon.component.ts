@@ -15,7 +15,7 @@ export class CrearCuponComponent {
     name: '',
     description: '',
     expirationdate: '',
-    status: '',
+    status: 'ACTIVO',
     companyId: 0,
     discountrate: 0
   };

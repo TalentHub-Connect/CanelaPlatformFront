@@ -7,7 +7,7 @@ import { EmpresaEditar } from '../model/empresa-editar';
   providedIn: 'root',
 })
 export class EmpresaService {
-  private apiUrl = 'http://localhost:8080/facturations';
+  private apiUrl = 'https://canelaaccounmanagermicroservice-qa.up.railway.app/api/talentsoft/company/list';
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -18,7 +18,7 @@ export class EmpresaService {
   constructor(private http: HttpClient) {}
   guardarEmpresa(nuevaEmpresa: EmpresaEditar): Observable<EmpresaEditar> {
     return this.http.post<EmpresaEditar>(
-      'http://localhost:8080/companies',
+      'https://canelaaccounmanagermicroservice-qa.up.railway.app/api/talentsoft/company/save',
       nuevaEmpresa,
       this.httpOptions
     );
@@ -31,7 +31,7 @@ export class EmpresaService {
     );
   }
   findById(id: number) {
-    return this.http.get<EmpresaEditar>(`http://localhost:8080/companies/{id}`);
+    return this.http.get<EmpresaEditar>(`https://canelaaccounmanagermicroservice-qa.up.railway.app/api/talentsoft/company/`+ id);
   }
 
   getEmpresas(): Observable<EmpresaEditar[]> {

@@ -9,32 +9,15 @@ import { Servicio } from '../model/servicio';
 export class SidebarService {
 
   constructor(private http: HttpClient) { }
-  private baseUrl = 'http://localhost:8080/services';  // Cambia esto si tu backend tiene otra URL
-    
-  
-  
-    getAllServices(): Observable<Servicio[]> {
-      return this.http.get<Servicio[]>(this.baseUrl);
-    }
-  
-    getServiceById(id: number): Observable<Servicio> {
-      const url = `${this.baseUrl}/${id}`;
-      return this.http.get<Servicio>(url);
-    }
-  
-    createService(service: Servicio): Observable<Servicio> {
-      return this.http.post<Servicio>(this.baseUrl, service);
-    }
-  
-    updateService(id: number, service: Servicio): Observable<Servicio> {
-      const url = `${this.baseUrl}/${id}`;
-      return this.http.put<Servicio>(url, service);
-    }
-  
-    deleteService(id: number): Observable<void> {
-      const url = `${this.baseUrl}/${id}`;
-      return this.http.delete<void>(url);
-    }
+
+  // Nombre empresa
+  obtenerNombreEmpresa(): Observable<string> {
+    return this.http.get<string>('URL_DEL_BACKEND/nombre-empresa');
   }
 
-
+  // Módulos nuevos
+  obtenerModulos(roleId: number): Observable<any[]> {
+    return this.http.get<any[]>(`https://canelaaccounmanagermicroservice-qa.up.railway.app/services/role/${roleId}`);
+  }
+  
+}

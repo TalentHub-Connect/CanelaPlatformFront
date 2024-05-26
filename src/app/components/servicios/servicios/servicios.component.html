@@ -52,8 +52,8 @@
               <td>{{ service.roleId }}</td>
               <td>{{ service.estatus }}</td>
               <td>
-                <button (click)="viewService(service.id)">Ver</button>
-                <button (click)="confirmDelete(service.id)">Eliminar</button>
+                <button class="view-btn" (click)="viewService(service.id)">Ver</button>
+                <button class="delete-btn" (click)="confirmDelete(service.id)">Eliminar</button>
               </td>
             </tr>
           </tbody>

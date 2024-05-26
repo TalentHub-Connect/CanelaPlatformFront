@@ -58,9 +58,10 @@
                             <button *ngIf="!isEditing" (click)="editCoupon()">Editar Cupón</button>
                             <button *ngIf="isEditing" (click)="saveCoupon()">Guardar Cambios</button>
                         </div>
-                        <div class="eliminar">
-                            <button (click)="deleteCoupon()">Eliminar Cupón</button>
+                        <div class="volver">
+                            <button (click)="goBack()">Volver</button>
                         </div>
+                        
                     </div>
                     <div class="circle1"></div>
                     <div class="circle2"></div>

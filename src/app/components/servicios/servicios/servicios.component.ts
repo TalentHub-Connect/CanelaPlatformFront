@@ -31,7 +31,7 @@ export class ServiciosComponent  implements OnInit {
   }
 
   viewService(id: number): void {
-    this.router.navigate([`canela/detalle-cupon/${id}`]);
+    this.router.navigate([`canela/detalle-servicio/`+id]);
   }
 
   confirmDelete(id: number): void {

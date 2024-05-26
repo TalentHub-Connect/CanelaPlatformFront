@@ -425,7 +425,7 @@ th {
 }
 
 .editar button,
-.eliminar button {
+.volver button {
     background-color: white;
     color: #000;
     border-radius: 10px;
@@ -435,13 +435,13 @@ th {
 }
 
 .editar button:hover,
-.eliminar button:hover {
-    background-color: #d9d9d9;
+.volver button:hover {
+    background-color: #e3e3e391;
     height: 50px;
 }
 
 .editar button:focus,
-.eliminar button:focus {
+.volver button:focus {
     outline: none;
 }
 
