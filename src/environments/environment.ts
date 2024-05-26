@@ -3,11 +3,11 @@ export const environment = {
   authURL: 'https://canelaauth-qa.up.railway.app/api/talentsoft/auth',
   secretKey: 'ThisIsASecretKey',
   //QaURL: 'https://talentsoftdespidos-qa.up.railway.app',
-  URL: 'https://modulocuentasplan-qa.up.railway.app',
+  URL: 'https://canelaaccounmanagermicroservice-qa.up.railway.app',
   URLCUPONES: 'https://canelaaccounmanagermicroservice-qa.up.railway.app/coupon',
-
+  URLPLANES:"https://canelaaccounmanagermicroservice-qa.up.railway.app",
   URLSUSCRIPCION:
-    'https://modulocuentassubscripciones-qa.up.railway.app/subscriptions',
+    'https://canelaaccounmanagermicroservice-qa.up.railway.app/api/talentsoft/company',
   // Cambiarla por el API GATEWAY A BACK
   URLUSUARIOS: 'https://canelausermanagementmicroservice-qa.up.railway.app/',
   URLPERFIL: '',

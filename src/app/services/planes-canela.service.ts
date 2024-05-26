@@ -8,11 +8,11 @@ import { Plan } from '../shared/model/Entities/plan';
   providedIn: 'root'
 })
 export class PlanesCanelaService {
-  private apiUrl = `${environment.URL}/plans`
+  private apiUrl = `${environment.URLPLANES}/plan`
   constructor(private http: HttpClient) { }
 
   obtenerPlanes(): Observable<Plan[]> {
-    return this.http.get<Plan[]>(`${this.apiUrl}`);
+    return this.http.get<Plan[]>(`${this.apiUrl}/list`);
   }
 
   obtenerPlanPorId(id: number): Observable<Plan> {

@@ -14,7 +14,7 @@ export class SuscripcioService {
   constructor(private http: HttpClient) {}
 
   getAllSuscripcion(): Observable<SuscripcionDto[]> {
-    return this.http.get<SuscripcionDto[]>(this.baseUrl);
+    return this.http.get<SuscripcionDto[]>(this.baseUrl+"/list");
   }
 
   getSuscripcionById(id: number): Observable<SuscripcionDto> {
