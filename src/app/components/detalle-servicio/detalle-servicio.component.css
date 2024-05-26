@@ -1,6 +1,3 @@
-
-
-
 .nav{
     width: 100%;
     height: 100%;
@@ -9,7 +6,7 @@
   .container-padre{
     width: 100%; /* Asegura que el contenedor sea de ancho completo */
   /* Elimina el padding interno */
-    margin: auto;
+  
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -24,18 +21,33 @@
   .contInfo{
     display: flex;
     width: 100%;
-    height: 60%;
+    height: 100%;
     border: 1px solid #ccc;
     background-color: #EDF2F7;
+    flex-direction:  column;
+    align-items: center;
   }
   
+  
+  
+  .perfil{
+    margin-bottom: 10px !important;
+    margin-left: 20px!important;
+  }
+  
+  .info1,
+  .info2 {
+      float: left;
+      width: 55vh;
+      margin-left: 20px; /* Esto hace que cada columna ocupe el 50% del ancho del contenedor */
+      box-sizing: border-box; /* Esto asegura que el padding y el borde no afecten el ancho de las columnas */
+  }
   .col1 {
     display: flex;
     flex-wrap: wrap;
-    height:100%;
-    width: 15%;
+    height:100%; 
+    width: 15%; 
     background-color: #EDF2F7; /* Color de fondo del menú */
-  
   
   }
   
@@ -44,28 +56,29 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    background-size: cover;
+    background-size: cover; 
     background-position: center;
-    height: 100%;
-    width: 100%;
+    height: 100%; 
+    width: 100%;   
   
     background-color: #f8f9fa; /* Color de fondo del menú */
   
   }
   
   .container-fluid{
-    margin-top: 20px;
+    margin-top: 10px;
   }
   
   .contenido{
     display: flex;
     flex-wrap: wrap;
-    padding-top: 0px;
+    padding: 0rem !important;
     /*width: 1191.005px;
     height:112px;*/
-    height: 100%;
+    height: 100vh;
+    width: 100%;
     border: 1px solid #ccc;
-      flex-direction: row;
+    flex-direction: row;
     justify-content: flex-start;
     background-color: #EDF2F7;
   }
@@ -93,14 +106,13 @@
   }
   
   .contTitulo{
-    /*width: 1191.005px;
-    height: 210px;*/
+    /*width: 1191.005px; 
+    height: 210px;*/ 
     width: 100%;
-    height: 25%;
-    border: 1px solid #ccc;
-    background-color: #52223b;
-    display: flex;
-    justify-content: center;
+    height: 20%;
+    border: 1px solid #ccc; 
+    background-color: #52223b; 
+    display: flex; justify-content: center; 
     align-items: center;
   }
   /* Estilos para los contenedores adicionales */
@@ -193,6 +205,7 @@
   }
   
   
+  
   /* Estilos para la barra de navegación lateral */
   .sidebar-sticky {
     position: fixed;
@@ -204,10 +217,7 @@
   
   
   
-  /* Estilos para el contenido principal */
-  .main-content {
-    padding-left: 15px; /* Esto deja espacio a la izquierda para que el contenido no se superponga con la barra lateral */
-  }
+  
   
   /* Ajustes para dispositivos móviles */
   @media (max-width: 768px) {
@@ -291,169 +301,70 @@
     margin-right: 10px; /* Ajusta el margen según tus necesidades */
   }
   
+  
   .button-container{
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    margin-top: 0.1%;
-    margin-bottom: 0.1%;
-    width: 100%;
+    justify-content: center;
+      align-items: center;
   }
   
   .btn-plan{
+  
     background-color: #963e6c;
-    width: 20%  ;
-    color: #ffffff;
+    color: #ffffff; 
+    margin-left:42vh;
+    margin-top: 25px;
   }
-  /* Estilos para la tabla */
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-table th, table td {
-  padding: 8px;
-  border: 1px solid #ddd;
-  text-align: center;
-}
-
-/* Estilos para el interruptor */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: .4s;
-  border-radius: 34px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: #52223b;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #52223b;
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
-
-/* Estilos adicionales para el interruptor redondo */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
-/* Estilos para los botones */
-.button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.btn {
-  padding: 10px 20px;
-  background-color: #963e6c;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background-color: #7b3254;
-}
-/* Estilos para los botones de editar y eliminar */
-.container {
-  padding: 20px;
-}
-
-.service-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-
-
-.service-table th {
-  background-color: #f2f2f2;
-}
-
-.add-button-container {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.add-button-container button {
-  background-color: green;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-}
-
-.add-button-container button:hover {
-  background-color: darkgreen;
-}
-
-button {
-  margin-right: 5px;
-}
-.view-btn {
-  background-color: yellow;
-  color: black;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.delete-btn {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.view-btn:hover {
-  background-color: darkorange;
-}
-
-.delete-btn:hover {
-  background-color: darkred;
-}
-
+  .botones{
+    margin-left:20vh;
+  }
   
-  
+  .form-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  .form-group label {
+    display: block;
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-bottom: 5px;
+  }
+  .form-group input {
+    width: 1000PX;
+    padding: 8px;
+    margin-left: 30PX;
+    box-sizing: border-box;
+  }
+  .button-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+  }
+  .edit-btn {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  .back-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  .edit-btn:hover {
+    background-color: darkgreen;
+  }
+  .back-btn:hover {
+    background-color: darkred;
+  }

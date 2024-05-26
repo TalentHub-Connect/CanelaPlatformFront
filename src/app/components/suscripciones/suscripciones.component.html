@@ -54,18 +54,18 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let suscripcion of suscripciones">
-                                            <td>{{ suscripcion.namecompany}}</td>
-                                            <td>{{ suscripcion.nit}}</td>
-                                            <td>{{ suscripcion.phonecompany}}</td>
-                                            <td>{{ suscripcion.email}}</td>
-                                            <td>{{ suscripcion.numworkers}}</td>
-                                            <td>{{ suscripcion.address}}</td>
-                                            <td>{{ suscripcion.status}}</td>
-                                            <td>{{ suscripcion.subscriptionenddate}}</td>
+                                            <td>{{ suscripcion.nameCompany}}</td>
+                                          <td>{{ suscripcion.nit}}</td>
+                                          <td>{{ suscripcion.phoneCompany}}</td>
+                                          <td>{{ suscripcion.email}}</td>
+                                          <td>{{ suscripcion.numWorkers}}</td>
+                                          <td>{{ suscripcion.address}}</td>
+                                          <td>{{ suscripcion.status}}</td>
+                                          <td>{{ suscripcion.subscriptionEndDate}}</td>
                                             <td>
                                                 <button class="btn-plan"  (click)="verSucripcion(suscripcion)">Ver</button>
                                                 <button class="btn-plan"  (click)="editarSuscripcion(suscripcion)">Editar</button>
-                                                <button class="btn-plan"  (click)="eliminarSuscripcion(suscripcion)">Eliminar</button>
+                                                <button class="btn-plan"  (click)="eliminarSuscripcion(suscripcion.id)">Eliminar</button>
                                             </td>
                                         </tr>
                                     </tbody>

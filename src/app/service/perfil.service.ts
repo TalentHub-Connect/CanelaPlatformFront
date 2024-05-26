@@ -2,74 +2,34 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PerfilDto } from '../model/perfil-dto';
+import { PerfilEditar } from '../model/perfil-editar';
+import { environment } from 'src/environments/environment';
+import {Employee} from "../model/employee";
 
 @Injectable({
   providedIn: 'root',
 })
 export class PerfilService {
-  private apiUrl = 'http://localhost:8080/api/BACKEND';
-
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    }),
-  };
+  private apiUrl = environment.URLPERFIL;
 
   constructor(private http: HttpClient) {}
 
+  getAllPerfil(): Observable<PerfilDto[]> {
+    return this.http.get<PerfilDto[]>(this.apiUrl);
+  }
+
   findByUsername(username: string) {
-    return this.http.get<PerfilDto>(`http://localhost:8080/users/{username}`);
+    return this.http.get<Employee>(`http://localhost:8080/employee/find_by_username/${username}`);
   }
 
-  findById(id: number) {
-    return this.http.get<PerfilDto>(`http://localhost:8080/users/{id}`);
+  findById(id: number): Observable<PerfilDto> {
+    return this.http.get<PerfilDto>(`http://localhost:8080/users/${id}`);
   }
 
-  modificarPerfil(perfil: PerfilDto): Observable<PerfilDto> {
-    return this.http.put<PerfilDto>(
-      `http://localhost:8080/users/edit`,
-      perfil,
-      this.httpOptions
-    );
-  }
-
-  updateStatus(id: number, status: string): void {
-    +this.findById(id).subscribe((e) => {
-      if (e) {
-        e.status = status;
-      }
-    });
-  }
-
-  puedeEditarEtapa(empleado: PerfilDto | undefined, etapa: string): boolean {
-    if (!empleado) return false;
-    const etapas = [
-      'Nuevo',
-      'Contactado',
-      'Plan gratis',
-      'Plan bronce',
-      'Plan silver',
-      'Plan gold',
-      'Cancelado',
-    ];
-    const currentIndex = etapas.indexOf(empleado.status);
-    const etapaIndex = etapas.indexOf(etapa);
-    return etapaIndex === currentIndex + 1 || etapa === empleado.status;
-  }
-
-  debeMostrarEtapa(empleado: PerfilDto | undefined, etapa: string): boolean {
-    if (!empleado) return false;
-    const etapasOrdenadas = [
-      'Nuevo',
-      'Contactado',
-      'Plan gratis',
-      'Plan bronce',
-      'Plan silver',
-      'Plan gold',
-      'Cancelado',
-    ];
-    let indexEtapaActual = etapasOrdenadas.indexOf(empleado.status);
-    let index = etapasOrdenadas.indexOf(etapa);
-    return index <= indexEtapaActual + 1; // Show only the current stage and the immediate next stage
+  modificarPerfil(
+    perfil: Employee,
+    id : number
+  ): Observable<Employee> {
+    return this.http.put<Employee>(`http://localhost:8080/employee/updateEmployee/${id}`, perfil);
   }
 }

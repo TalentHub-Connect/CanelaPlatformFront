@@ -9,7 +9,7 @@ import { PerfilDto } from '../model/perfil-dto';
 })
 export class ImpersonarService {
 
-  private apiUrl = 'http://localhost:8080/api/BACKEND'; // URL de tu backend
+  private apiUrl = 'https://soporte-back-qa.up.railway.app/api/support/tickets'; // URL de tu backend
 
   constructor(private http: HttpClient) { }
 

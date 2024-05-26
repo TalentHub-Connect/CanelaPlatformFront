@@ -1,0 +1,56 @@
+
+<body>
+
+    <div class="container-padre" >
+  
+            <div class="col2">
+                <div class = "contenido">  
+                    <div class="simple_container">
+                        
+                        <!-- Contenedor del otro contenido -->
+                        <div class="container cont1">
+                            <div style="display: flex; align-items: center; height: 48px;">
+                                <i class="fa-solid fa-magnifying-glass" style="margin-right: 10px;"></i>
+                                <span style="color: rgb(195, 195, 197);">Ingresa tu búsqueda aquí...</span>
+                            </div>
+                        </div>
+
+                        <div class="container cont2">
+                            <div style="display: flex; align-items: center; height: 110px;">
+                                <div style="margin-left: auto; margin-right: 20px;">
+                                    <i class="fa-solid fa-bell" style="color: #963e6c; font-size: 2em;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contTitulo" >
+                        <div class="container-fluid m-3" style="width: 70%; height: 80%; border: 1px solid #ccc;background-color: #f3f0f2; border-radius: 18px;display: flex; align-items: center; ">
+                            <h1 style="color: #963e6c; font-size: 4em; margin: 0 0 0 20px;">Crear empresa</h1>
+                        </div>
+                    </div>
+
+                    <div class="contInfo" >
+                            
+                        <form (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                              <label for="description">Descripción</label>
+                              <input type="text" id="description" [(ngModel)]="servicio.description" name="description">
+                            </div>
+                            <div class="form-group">
+                              <label for="roleId">Role ID</label>
+                              <input type="number" id="roleId" [(ngModel)]="servicio.roleId" name="roleId">
+                            </div>
+                            
+                            <div class="button-container">
+                              <button type="submit" class="edit-btn">Editar</button>
+                              <button type="button" class="back-btn" (click)="goBack()">Devolverse</button>
+                            </div>
+                          </form>
+
+                    </div>
+                </div>
+      
+            </div>
+    </div>
+</body>

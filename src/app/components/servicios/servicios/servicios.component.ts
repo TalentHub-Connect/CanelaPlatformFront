@@ -10,80 +10,68 @@ import Swal from 'sweetalert2';
   templateUrl: './servicios.component.html',
   styleUrl: './servicios.component.css'
 })
-export class ServiciosComponent  {
+export class ServiciosComponent  implements OnInit {
+  services: Servicio[] = [];
 
+  constructor(private servicieService: ServiciosService, private router: Router) { }
 
-  servicios: Servicio[] = [];
-
-
-  constructor(
-    private router: Router,
-    private serviciosService: ServiciosService
-  ) {
-  }
   ngOnInit(): void {
-    this.serviciosService.getServicio().subscribe(
-      (data) => {
-        this.servicios = data;
+    this.loadServices();
+  }
+
+  loadServices(): void {
+    this.servicieService.getAllServices().subscribe(
+      (data: Servicio[]) => {
+        this.services = data;
       },
-      (error) => {
-        console.error(error);
+      error => {
+        console.error('Error fetching services', error);
       }
     );
   }
-  
 
-  edicionIniciada = false; // Variable para rastrear si se inició la edición
+  viewService(id: number): void {
+    this.router.navigate([`canela/detalle-servicio/`+id]);
+  }
 
-  confirmarEdicion(servicio: Servicio) {
+  confirmDelete(id: number): void {
     Swal.fire({
       title: '¿Estás seguro?',
-      text: '¿Deseas modificar este servicio?',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Sí',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.value) {
-        // Inicia la edición del servicio
-        servicio.editado = true;
-        this.edicionIniciada = true; // Marca que se ha iniciado la edición
-      }
-    });
-  }
-
-  confirmarEdicionServicio() {
-    // Aquí puedes implementar la lógica para confirmar la edición del servicio
-    console.log('Edición confirmada');
-    // Por ejemplo, puedes guardar los cambios en el backend
-    // Luego puedes reiniciar el estado de edición
-    this.edicionIniciada = false;
-  }
-
-  confirmarEliminar(servicio: Servicio) {
-    // Mensaje de confirmación para eliminar
-    Swal.fire({
-      title: 'Eliminar servicio',
-      text: '¿Estás seguro de que deseas eliminar este servicio?',
+      text: 'No podrás revertir esto.',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Sí, eliminar'
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminarlo',
+      cancelButtonText: 'No, cancelar'
     }).then((result) => {
-      if (result.value) {
-        // Aquí puedes implementar la lógica para eliminar el servicio
-        console.log('Eliminando servicio:', servicio);
+      if (result.isConfirmed) {
+        this.deleteService(id);
       }
     });
   }
 
-  cambiarEstado(servicio: Servicio) {
-    // Cambia el estado del servicio
-    servicio.estatus = (servicio.estatus === 'ACTIVO') ? 'INACTIVO' : 'ACTIVO';
+  deleteService(id: number): void {
+    this.servicieService.deleteService(id).subscribe(
+      () => {
+        Swal.fire(
+          'Eliminado!',
+          'El servicio ha sido eliminado.',
+          'success'
+        );
+        this.loadServices(); // Reload the list of services
+      },
+      error => {
+        Swal.fire(
+          'Error',
+          'Hubo un problema al eliminar el servicio.',
+          'error'
+        );
+      }
+    );
   }
 
-  nuevoServicio() {
+  addService(): void {
     this.router.navigate(['canela/crear-servicio']);
   }
 }

@@ -1,12 +1,9 @@
-export class Cupon {
-    constructor(
-        public id: number,
-        public name: String,
-        public description: String,
-        public expirationdate: string,
-        public status: String,
-        public companyId: number,
-        public discountrate: number,
-        
-      ) {}
+export interface Cupon {
+  id: number;
+  name: string;
+  description: string;
+  expirationdate: string;
+  status: string;
+  companyId: number;
+  discountrate: number;
 }

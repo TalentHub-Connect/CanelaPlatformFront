@@ -60,29 +60,7 @@ export class CuponDetalleComponent implements OnInit {
       });
     }
   }
-
-  deleteCoupon(): void {
-    if (this.cupon) {
-      Swal.fire({
-        title: '¿Estás seguro?',
-        text: "No podrás revertir esto",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, eliminarlo',
-        cancelButtonText: 'Cancelar'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.cuponesService.deleteCoupon(this.cupon!.id).subscribe(
-            () => {
-              Swal.fire('Eliminado', 'El cupón ha sido eliminado.', 'success');
-              this.router.navigate(['/cupones']);
-            },
-            (error) => console.error('Error deleting coupon', error)
-          );
-        }
-      });
-    }
+  goBack(): void {
+    this.router.navigate(['/canela/cupones']);
   }
 }

@@ -33,60 +33,36 @@
           <h1 style="color: #963e6c; font-size: 4em; margin: 0 0 0 20px;">Servicios</h1>
         </div>
       </div>
-      <div class="button-container">
-       <!--<button class="btn btn-plan" type="button"(click)="nuevoServicio()">Nuevo Servicio</button>--> 
-      <!--<button class="btn btn-plan" type="button"(click)="guardarCambios()">Guardar cambios</button>--> 
+      
+      <div class="container">
+        <table class="service-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Description</th>
+              <th>Role ID</th>
+              <th>Estatus</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let service of services">
+              <td>{{ service.id }}</td>
+              <td>{{ service.description }}</td>
+              <td>{{ service.roleId }}</td>
+              <td>{{ service.estatus }}</td>
+              <td>
+                <button class="view-btn" (click)="viewService(service.id)">Ver</button>
+                <button class="delete-btn" (click)="confirmDelete(service.id)">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="add-button-container">
+          <button (click)="addService()">Agregar Servicio</button>
+        </div>
       </div>
-
-      <table>
-        <!-- Encabezados de la tabla -->
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Nombre del Servicio</th>
-            <th>Estatus del Servicio</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Filas de la tabla -->
-          <tr *ngFor="let servicio of servicios">
-            <td>{{ servicio.id }}</td>
-            <td>
-              <!-- Si el servicio está en modo de edición, mostrar un input para editar -->
-              <ng-container *ngIf="servicio.editado; else nombreNormal">
-                <input type="text" [(ngModel)]="servicio.nombre">
-              </ng-container>
-              <!-- Si no está en modo de edición, mostrar solo el nombre -->
-              <ng-template #nombreNormal>
-                {{ servicio.nombre }}
-              </ng-template>
-            </td>
-            <td>
-              <label class="switch">
-                <!-- Checkbox para el estatus del servicio -->
-                <input type="checkbox" [checked]="servicio.estatus === 'ACTIVO'" (change)="cambiarEstado(servicio)">
-                <span class="slider round"></span>
-              </label>
-            </td>
-            <td>
-              <!-- Botón de editar -->
-              <button class="btn-editar" (click)="confirmarEdicion(servicio)">Editar</button>
-              <!-- Botón de eliminar -->
-              <button class="btn-eliminar" (click)="confirmarEliminar(servicio)">
-                <i class="bi bi-trash" style="color: red;"></i> Eliminar
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
       
-      <!-- Botón para confirmar la edición -->
-      <button class="btn-confirmar" *ngIf="edicionIniciada" (click)="confirmarEdicionServicio()">Confirmar edición</button>
-      
-      
-      
-    
       
       
 

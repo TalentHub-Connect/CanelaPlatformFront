@@ -37,31 +37,37 @@
                             <div class="row">
                                 <div class="col-md-6 info1">
                                     <div class="mb-3">
-                                        <p><b class="subtitulo">Nombre empresa: </b> <input type="text" [(ngModel)]="nombre"></p>
+                                        <p><b class="subtitulo">Nombre empresa: </b> <input type="text" [(ngModel)]="nameCompany"></p>
                                     </div>
                                     <div class="mb-3">
                                         <p><b class="subtitulo">NIT: </b> <input type="number" [(ngModel)]="nit"></p>
                                     </div>
                                     <div class="mb-3">
-                                        <p><b class="subtitulo">Correo: </b> <input type="email" [(ngModel)]="correo"></p>
+                                        <p><b class="subtitulo">Correo: </b> <input type="email" [(ngModel)]="email"></p>
                                     </div>
                                     <div class="mb-3">
-                                        <p><b class="subtitulo">Telefono: </b> <input type="number" [(ngModel)]="phone"></p>
+                                        <p><b class="subtitulo">Telefono: </b> <input type="number" [(ngModel)]="phoneCompany"></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p><b class="subtitulo">Nombre legal del representante: </b> <input type="text" [(ngModel)]="nameLegalRepresentative"></p>
                                     </div>
 
                                 </div>
                                 <div class="col-md-6 info2">
                                     <div class="mb-3">
-                                        <p><b class="subtitulo">Trabajadores: </b> <input type="number" [(ngModel)]="maxNumWorker"></p>
+                                        <p><b class="subtitulo">Trabajadores: </b> <input type="number" [(ngModel)]="numWorkers"></p>
                                     </div>
                                     <div class="mb-3">
-                                        <p><b class="subtitulo">Dirección: </b> <input type="text" [(ngModel)]="direccion"></p>
+                                        <p><b class="subtitulo">Dirección: </b> <input type="text" [(ngModel)]="address"></p>
                                     </div>
                                     <div class="mb-3">
-                                        <p><b class="subtitulo">Fecha terminación plan: </b> <input type="date" [(ngModel)]="fechaFinal"></p>
+                                        <p><b class="subtitulo">Fecha terminación plan: </b> <input type="date" [(ngModel)]="subscriptionEndDate"></p>
                                     </div>
                                     <div class="mb-3">
-                                        <p><b class="subtitulo">Status: </b> <input type="date" [(ngModel)]="entradaStatus"></p>
+                                        <p><b class="subtitulo">Fecha de ingreso </b> <input type="date" [(ngModel)]="linkDate"></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p><b class="subtitulo">Status: </b> <input type="date" [(ngModel)]="status"></p>
                                     </div>
                                 </div>
                             </div>

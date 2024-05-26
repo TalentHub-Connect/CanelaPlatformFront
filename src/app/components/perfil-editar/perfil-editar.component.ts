@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { PerfilDto } from 'src/app/model/perfil-dto';
 import { PerfilService } from 'src/app/service/perfil.service';
+import { PerfilEditar } from 'src/app/model/perfil-editar';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+import {Employee} from "../../model/employee";
 
 @Component({
   selector: 'app-perfil-editar',
@@ -16,59 +18,46 @@ export class PerfilEditarComponent implements OnInit {
     private router: Router,
     private PerfilService: PerfilService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+  }
 
-  perfil: PerfilDto | undefined;
-  entradaId: number | undefined;
-  entradaCedula: number | undefined;
-  entradanNombre: string | undefined;
-  entradaDireccion: string | undefined;
-  entradaTelefono: number | undefined;
+  perfil: Employee | undefined;
+  entradaTelefono: string | undefined;
   entradaNombreContacto: string | undefined;
   entradanTelContacto: number | undefined;
 
+  username = localStorage.getItem('username');
+
   ngOnInit(): void {
-    this.route.paramMap
-      .pipe(
-        switchMap((params) => this.PerfilService.findById(+params.get('id')!))
-      )
-      .subscribe((PerfilDto) => (this.perfil = PerfilDto));
+    console.log('.........' + this.username);
+    if (this.username) {
+      this.PerfilService.findByUsername(this.username).subscribe((perfil) => {
+        console.log('Perfil encontrado:', perfil);
+        this.perfil = perfil
+      });
+    }
   }
 
   editar() {
-    let inputId = this.entradaId;
-    let inputIdentification = this.entradaCedula;
-    let inputName = this.entradanNombre;
-    let inputAdress = this.entradaDireccion;
     let inputNumberPhone = this.entradaTelefono;
     let inputEmergencyName = this.entradaNombreContacto;
     let inputEmergencyContact = this.entradanTelContacto;
-
-    if (
-      inputId != undefined &&
-      inputIdentification != undefined &&
-      inputName != undefined &&
-      inputName != '' &&
-      inputAdress != undefined &&
-      inputAdress != '' &&
-      inputNumberPhone != undefined &&
-      inputEmergencyName != undefined &&
-      inputEmergencyName != '' &&
-      inputEmergencyContact != undefined
-    ) {
-      if (this.perfil != undefined) {
-        this.perfil.id = inputId;
-        this.perfil.identificacion = inputIdentification;
-        this.perfil.name = inputName;
-        this.perfil.address = inputAdress;
-        this.perfil.numberPhone = inputNumberPhone;
-        this.perfil.emergencycontactname = inputEmergencyName;
-        this.perfil.emergencyContact = inputEmergencyContact;
-
-        this.PerfilService.modificarPerfil(this.perfil).subscribe((result) => {
-          this.router.navigate(['/canela/perfil/view/:id']);
-        });
+    if(this.perfil){
+      if(inputNumberPhone){
+        this.perfil.phoneNumber = inputNumberPhone;
       }
+      if(inputEmergencyContact){
+        this.perfil.emergencycontact = inputEmergencyContact;
+      }
+      if(inputEmergencyName){
+        this.perfil.nameemergencycontact = inputEmergencyName;
+      }
+      this.PerfilService.modificarPerfil(
+        this.perfil,
+        this.perfil.id
+      ).subscribe((result) => {
+        this.router.navigate(['/canela/perfil/view/:id']);
+      });
     }
   }
 

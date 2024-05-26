@@ -2,11 +2,11 @@
 <body>
 
     <div class="container-padre" >
-  
+
             <div class="col2">
-                <div class = "contenido">  
+                <div class = "contenido">
                     <div class="simple_container">
-                        
+
                         <!-- Contenedor del otro contenido -->
                         <div class="container cont1">
                             <div style="display: flex; align-items: center; height: 48px;">
@@ -31,42 +31,28 @@
                     </div>
 
                     <div class="contInfo" >
-                            
+
                         <div class="container-fluid " style="width: 70%; height: 50%; border: 1px solid #ccc;background-color: #f3f0f2; border-radius: 15px;display: flex; align-items: center;">
 
                             <div class="row">
                                 <div class="col-md-6 info1">
-                                    <div class="mb-3">
-                                        <p><b class="subtitulo">Nuevo nombre: </b> <input type="text" [(ngModel)]="entradanNombre"></p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <p><b class="subtitulo">Usuario: </b> {{perfil?.username}}</p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <p><b class="subtitulo">Correo: </b> {{perfil?.email}}</p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <p><b class="subtitulo">Nueva cédula: </b> <input type="number" [(ngModel)]="entradaCedula"></p>
-                                    </div>
+
                                 </div>
                                 <div class="col-md-6 info2">
                                     <div class="mb-3">
-                                        <p><b class="subtitulo">Nueva dirección: </b> <input type="text"   [(ngModel)]="entradaDireccion"></p>
+                                        <p><b class="subtitulo">Nuevo teléfono: </b> <input type="number" placeholder="{{perfil?.phoneNumber}}"  [(ngModel)]="entradaTelefono"></p>
                                     </div>
                                     <div class="mb-3">
-                                        <p><b class="subtitulo">Nuevo teléfono: </b> <input type="number"   [(ngModel)]="entradaTelefono"></p>
+                                        <p><b class="subtitulo">Nuevo nombre contacto: </b> <input type="text"  placeholder="{{perfil?.nameemergencycontact}}" [(ngModel)]="entradaNombreContacto"></p>
                                     </div>
                                     <div class="mb-3">
-                                        <p><b class="subtitulo">Nuevo nombre: </b> <input type="text"   [(ngModel)]="entradaNombreContacto"></p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <p><b class="subtitulo">Nuevo teléfono: </b> <input type="number"   [(ngModel)]="entradanTelContacto"></p>
+                                        <p><b class="subtitulo">Nuevo teléfono contacto : </b> <input type="number"  placeholder="{{perfil?.emergencycontact}}"  [(ngModel)]="entradanTelContacto"></p>
                                     </div>
                                 </div>
                             </div>
-                                
-                           
-                    
+
+
+
                         </div>
                         <div class="row">
                             <div class="col-md-12">
@@ -79,7 +65,7 @@
 
                     </div>
                 </div>
-      
+
             </div>
     </div>
 </body>

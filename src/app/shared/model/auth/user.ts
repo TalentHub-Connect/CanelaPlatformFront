@@ -7,6 +7,7 @@ export class User {
   public password: string = '';
   public role: string = '';
 
+
   constructor();
   constructor(
     firstName: string,

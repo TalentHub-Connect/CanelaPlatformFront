@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { SidebarService } from 'src/app/service/sidebar.service';
 import { SlidebarService } from 'src/app/service/slidebar.service';
-
 
 @Component({
   selector: 'app-slidebar',
   templateUrl: './slidebar.component.html',
-  styleUrls: ['./slidebar.component.css']
+  styleUrls: ['./slidebar.component.css'],
 })
-export class SlidebarComponent implements OnInit {
+export class SlidebarComponent  implements OnInit {
   nombreEmpresa: string = '';
   modulos: { id: number, description: string, rolId: number, status: string }[] = [];
   roles: string[] = [];
 
   showAdminCard: boolean = false;
   showSupportCard: boolean = false;
-  showMerketingCard: boolean = false;
+  showMarketingCard: boolean = false;
   showCountCard: boolean = false;
 
 
-  constructor(private sidebarService: SlidebarService) { }
+  constructor(private sidebarService: SidebarService) { }
 
   ngOnInit(): void {
     const roleStr = localStorage.getItem('role');
@@ -47,9 +47,9 @@ export class SlidebarComponent implements OnInit {
           (modulos: any[]) => {
             console.log(`Modulos recibidos del API para el rol ${role}:`, modulos);
 
-            const filteredModulos = modulos.filter(modulo => 
-              modulo.rolId === roleId && 
-              modulo.status === 'ACTIVO' && 
+            const filteredModulos = modulos.filter(modulo =>
+              modulo.rolId === roleId &&
+              modulo.status === 'ACTIVO' &&
               !uniqueModules.has(modulo.id)
             );
 
@@ -82,10 +82,9 @@ export class SlidebarComponent implements OnInit {
   getRoleId(roleName: string): number {
     const roleMap: { [key: string]: number } = {
       'ADMIN': 1,
-      'SOPORTE': 2,
-      'MARKETING': 3,
-      'CUENTAS': 4,
-      
+      'SOPORTE': 7,
+      'MARKETING': 8,
+      'CUENTAS': 9
     };
     return roleMap[roleName] || 0;
   }
@@ -93,17 +92,17 @@ export class SlidebarComponent implements OnInit {
   setCardVisibility(): void {
     console.log('Setting card visibility based on modulos:', this.modulos);
 
-    this.showAdminCard = this.modulos.some(modulo => modulo.description === 'ADMIN');
-    this.showSupportCard = this.modulos.some(modulo => modulo.description === 'SOPORTE');
-    this.showMerketingCard = this.modulos.some(modulo => modulo.description === 'MARKETING');
-    this.showCountCard = this.modulos.some(modulo => modulo.description === 'CUENTAS');
-   
+    const isAdmin = this.modulos.some(modulo => modulo.description === 'ADMIN');
+    this.showAdminCard = isAdmin
+    this.showSupportCard =isAdmin|| this.modulos.some(modulo => modulo.description === 'SOPORTE');
+    this.showMarketingCard = isAdmin||this.modulos.some(modulo => modulo.description === 'MARKETING');
+    this.showCountCard = isAdmin|| this.modulos.some(modulo => modulo.description === 'COUNT');
+
 
     console.log('Card visibility - Admin:', this.showAdminCard);
-    console.log('Card visibility - Recruitment:', this.showSupportCard);
-    console.log('Card visibility - Dismissal:', this.showMerketingCard);
+    console.log('Card visibility - Support:', this.showSupportCard);
+    console.log('Card visibility - Marketing:', this.showMarketingCard);
     console.log('Card visibility - Nomina:', this.showCountCard);
-    
   }
 
   logout(): void {
