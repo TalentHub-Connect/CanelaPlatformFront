@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cupon } from '../model/cupon';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { SuscripcionDto } from '../model/suscripcion-dto';
 
@@ -14,7 +14,7 @@ export class SuscripcioService {
   constructor(private http: HttpClient) {}
 
   getAllSuscripcion(): Observable<SuscripcionDto[]> {
-    return this.http.get<SuscripcionDto[]>(this.baseUrl+"/list");
+    return this.http.get<SuscripcionDto[]>(this.baseUrl + '/list');
   }
 
   getSuscripcionById(id: number): Observable<SuscripcionDto> {

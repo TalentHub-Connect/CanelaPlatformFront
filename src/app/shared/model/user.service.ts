@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.prod';
 import { User } from './auth/user';
-import {Employee} from "../../model/employee"; // Asegúrate de que la ruta de importación es correcta
+import { Employee } from '../../model/employee'; // Asegúrate de que la ruta de importación es correcta
 
 @Injectable({
   providedIn: 'root',
@@ -31,15 +31,18 @@ export class UserService {
     return this.http.post<User>(url, email);
   }
 
-
   agregarUsuario(usuario: User): Observable<any> {
-    return this.http.post<any>(`https://canelausermanagementmicroservice-qa.up.railway.app/user/save`, usuario);
+    return this.http.post<any>(
+      `https://canelausermanagementmicroservice-qa.up.railway.app/user/save`,
+      usuario
+    );
   }
 
   agregarEmpleado(empleado: Employee) {
     //return this.http.post<any>(`https://empresasnominamicroservice-qa.up.railway.app/employee/createEmployee`, empleado);
-    return this.http.post<any>(`https://empresasnominamicroservice-qa.up.railway.app/employee/createEmployee`, empleado);
-
+    return this.http.post<any>(
+      `https://empresasnominamicroservice-qa.up.railway.app/employee/createEmployee`,
+      empleado
+    );
   }
-
 }
