@@ -45,6 +45,7 @@ export class CrearEmpresaComponent {
     let subscriptionEndDate = this.subscriptionEndDate;
     let maxNumWorker = this.numWorkers;
     let status = this.status;
+    let plan_id;
 
     if (
       id != undefined &&
@@ -62,7 +63,8 @@ export class CrearEmpresaComponent {
       subscriptionEndDate != undefined &&
       correo != undefined &&
       correo != ' ' &&
-      status != undefined
+      status != undefined &&
+      plan_id != undefined
     ) {
       let nuevaSuscripcion = new SuscripcionDto(
         id,
@@ -76,7 +78,8 @@ export class CrearEmpresaComponent {
         linkDate,
         subscriptionEndDate,
         maxNumWorker,
-        status
+        status,
+        plan_id
       );
       this.SuscripcioService.createSuscripcion(nuevaSuscripcion).subscribe(
         (result) => {
