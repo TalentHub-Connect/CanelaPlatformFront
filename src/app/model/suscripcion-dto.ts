@@ -11,6 +11,7 @@ export class SuscripcionDto {
     public linkDate: string,
     public subscriptionEndDate: Date,
     public numWorkers: number,
-    public status: string
+    public status: string,
+    public plan_id: number
   ) {}
 }

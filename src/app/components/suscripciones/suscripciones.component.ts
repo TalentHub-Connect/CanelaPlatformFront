@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EmpresaDto } from 'src/app/model/empresa-dto';
 import { SuscripcionDto } from 'src/app/model/suscripcion-dto';
 import { SuscripcioService } from 'src/app/service/suscripcio.service';
+import { InfoPlanesService } from 'src/app/service/info-planes.service';
+import { PlanesDto } from 'src/app/model/planes-dto';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,10 +15,12 @@ import Swal from 'sweetalert2';
 export class SuscripcionesComponent implements OnInit {
   constructor(
     private router: Router,
-    private SuscripcioService: SuscripcioService
+    private SuscripcioService: SuscripcioService,
+    private InfoPlanesService: InfoPlanesService
   ) {}
 
   suscripciones: SuscripcionDto[] | undefined;
+  planes: PlanesDto[] | undefined;
   ngOnInit(): void {
     let timerInterval: any;
     Swal.fire({
@@ -46,7 +50,6 @@ export class SuscripcionesComponent implements OnInit {
         console.error('Ocurrió un error al obtener los planes:', error);
       }
     );
-
   }
 
   cargarSuscripciones() {

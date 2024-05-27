@@ -7,7 +7,8 @@ import { PlanesDto } from '../model/planes-dto';
   providedIn: 'root',
 })
 export class InfoPlanesService {
-  private apiUrl = 'https://canelaaccounmanagermicroservice-qa.up.railway.app/plan/list';
+  private apiUrl =
+    'https://canelaaccounmanagermicroservice-qa.up.railway.app/plan/list';
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -35,7 +36,9 @@ export class InfoPlanesService {
   }
 
   findById(id: number) {
-    return this.http.get<PlanesDto>(`https://canelaaccounmanagermicroservice-qa.up.railway.app/plan/`+ id);
+    return this.http.get<PlanesDto>(
+      `https://canelaaccounmanagermicroservice-qa.up.railway.app/plans/` + id
+    );
   }
 
   findAll(): Observable<PlanesDto[]> {
