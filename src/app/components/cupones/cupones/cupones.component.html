@@ -58,14 +58,14 @@
                                 <td>{{ empresas[coupon.companyId] }}</td>
                                 <td>{{ coupon.discountrate }}</td>
                                 <td>
-                                    <button class="view-btn" (click)="viewCoupon(coupon.id)">Ver</button>
-                                    <button class="delete-btn" (click)="confirmDelete(coupon.id)">Eliminar</button>
+                                    <button class="btn btn-plan" (click)="viewCoupon(coupon.id)">Ver</button>
+                                    <button class="btn btn-plan" (click)="confirmDelete(coupon.id)">Eliminar</button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="button-container">
-                        <button class="add-coupon-btn" (click)="goToAddCoupon()">Agregar Cupón</button>
+                        <button class="btn btn-plan" (click)="goToAddCoupon()">Agregar Cupón</button>
                     </div>
                 </div>
             </div>
