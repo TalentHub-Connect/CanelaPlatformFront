@@ -49,7 +49,6 @@
                                             <th scope="col">Dirección</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Fecha final suscripción</th>
-                                            <th scope="col">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -62,9 +61,7 @@
                                           <td>{{ suscripcion.address}}</td>
                                           <td>{{ suscripcion.status}}</td>
                                           <td>{{ suscripcion.subscriptionEndDate}}</td>
-                                            <td>
-                                                <button class="btn-plan"  (click)="eliminarSuscripcion(suscripcion.id)">Eliminar</button>
-                                            </td>
+
                                         </tr>
                                     </tbody>
                                 </table>
