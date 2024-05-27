@@ -349,22 +349,22 @@
     text-align: center;
   }
   .edit-btn {
-    background-color: green;
+    background-color: #963e6c;
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
   }
   .back-btn {
-    background-color: red;
+    background-color: #963e6c;
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
   }
   .edit-btn:hover {
-    background-color: darkgreen;
+    background-color: #963e6c;
   }
   .back-btn:hover {
-    background-color: darkred;
+    background-color: #963e6c;
   }
