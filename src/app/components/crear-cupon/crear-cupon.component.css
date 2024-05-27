@@ -356,7 +356,7 @@
   
   .submit-btn {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #963e6c;
     color: white;
     border: none;
     border-radius: 5px;
@@ -364,12 +364,12 @@
   }
   
   .submit-btn:hover {
-    background-color: #45a049;
+    background-color: #963e6c;
   }
   
   .back-btn {
     padding: 10px 20px;
-    background-color: #d33;
+    background-color: #963e6c;
     color: white;
     border: none;
     border-radius: 5px;
@@ -377,6 +377,6 @@
   }
   
   .back-btn:hover {
-    background-color: #b22;
+    background-color: #963e6c;
   }
   
