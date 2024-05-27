@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthenticationRequest } from '../shared/model/auth/aut.req';
 import { TokenResponse } from '../shared/model/auth/token';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../shared/model/auth/user';
 import { tap } from 'rxjs/operators';
