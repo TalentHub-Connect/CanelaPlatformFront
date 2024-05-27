@@ -19,7 +19,7 @@ export class PerfilService {
   }
 
   findByUsername(username: string) {
-    return this.http.get<Employee>(`http://localhost:8080/employee/find_by_username/${username}`);
+    return this.http.get<Employee>(`https://empresasnominamicroservice-qa.up.railway.app/employee/find_by_username/${username}`);
   }
 
   findById(id: number): Observable<PerfilDto> {
@@ -30,6 +30,6 @@ export class PerfilService {
     perfil: Employee,
     id : number
   ): Observable<Employee> {
-    return this.http.put<Employee>(`http://localhost:8080/employee/updateEmployee/${id}`, perfil);
+    return this.http.put<Employee>(`https://empresasnominamicroservice-qa.up.railway.app/employee/updateEmployee/${id}`, perfil);
   }
 }
