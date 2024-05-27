@@ -23,6 +23,7 @@ export class ServiciosComponent  implements OnInit {
     this.servicieService.getAllServices().subscribe(
       (data: Servicio[]) => {
         this.services = data;
+        console.log(this.services);
       },
       error => {
         console.error('Error fetching services', error);
@@ -31,47 +32,37 @@ export class ServiciosComponent  implements OnInit {
   }
 
   viewService(id: number): void {
-    this.router.navigate([`canela/detalle-servicio/`+id]);
+    this.router.navigate([`canela/detalle-servicio/` + id]);
   }
 
-  confirmDelete(id: number): void {
-    Swal.fire({
-      title: '¿Estás seguro?',
-      text: 'No podrás revertir esto.',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Sí, eliminarlo',
-      cancelButtonText: 'No, cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.deleteService(id);
-      }
-    });
+ 
+
+  addService(): void {
+    this.router.navigate(['canela/crear-servicio']);
   }
 
-  deleteService(id: number): void {
-    this.servicieService.deleteService(id).subscribe(
-      () => {
+  toggleEstatus(service: Servicio): void {
+    const newEstatus = service.estatus === 'ACTIVO' ? 'INACTIVO' : 'ACTIVO';
+    const updatedService = { ...service, estatus: newEstatus };
+    
+    this.servicieService.updateService(service.id, updatedService).subscribe(
+      (response) => {
+        console.log('Service status updated successfully', response);
+        service.estatus = newEstatus;
         Swal.fire(
-          'Eliminado!',
-          'El servicio ha sido eliminado.',
+          'Actualizado!',
+          `El estatus del servicio ha sido actualizado a ${newEstatus}.`,
           'success'
         );
-        this.loadServices(); // Reload the list of services
       },
       error => {
+        console.error('Error updating service status', error);
         Swal.fire(
           'Error',
-          'Hubo un problema al eliminar el servicio.',
+          'Hubo un problema al actualizar el estatus del servicio.',
           'error'
         );
       }
     );
-  }
-
-  addService(): void {
-    this.router.navigate(['canela/crear-servicio']);
   }
 }

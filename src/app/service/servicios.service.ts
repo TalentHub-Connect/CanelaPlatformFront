@@ -10,7 +10,6 @@ export class ServiciosService {
 
   private apiUrl = 'https://canelaaccounmanagermicroservice-qa.up.railway.app/services';
 
-
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -29,12 +28,12 @@ export class ServiciosService {
   }
 
   createService(service: Servicio): Observable<Servicio> {
-    return this.http.post<Servicio>(this.apiUrl, service);
+    return this.http.post<Servicio>(this.apiUrl, service, this.httpOptions);
   }
 
   updateService(id: number, service: Servicio): Observable<Servicio> {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.put<Servicio>(url, service);
+    return this.http.put<Servicio>(url, service, this.httpOptions);
   }
 
   deleteService(id: number): Observable<void> {
@@ -42,4 +41,3 @@ export class ServiciosService {
     return this.http.delete<void>(url);
   }
 }
-

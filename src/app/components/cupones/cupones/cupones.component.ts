@@ -33,6 +33,7 @@ export class CuponesComponent implements OnInit {
         this.empresas[empresa.id] = empresa.name;
       });
     });
+    console.log(this.empresas);
   }
 
   viewCoupon(id: number): void {
