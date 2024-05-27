@@ -342,7 +342,7 @@ th {
   margin-top: 20px;
 }
 .add-coupon-btn {
-  background-color: #4CAF50;
+  background-color: #963e6c;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -351,10 +351,10 @@ th {
 }
 
 .add-coupon-btn:hover {
-  background-color: #45a049;
+  background-color: #963e6c;
 }
 .view-btn {
-  background-color: yellow;
+  background-color: #963e6c;
   color: black;
   margin-right: 10px;
   border: none;
@@ -363,7 +363,7 @@ th {
 }
 
 .delete-btn {
-  background-color: red;
+  background-color: #963e6c;
   color: white;
   border: none;
   padding: 10px 20px;
