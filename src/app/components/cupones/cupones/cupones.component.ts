@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { Cupon } from 'src/app/model/cupon';
+import { EmpresaEditar } from 'src/app/model/empresa-editar';
 import { CuponesService } from 'src/app/service/cupones.service';
 import { EmpresaService } from 'src/app/service/empresa-editar.service';
 import Swal from 'sweetalert2';
@@ -10,11 +9,11 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-cupones',
   templateUrl: './cupones.component.html',
-  styleUrl: './cupones.component.css'
+  styleUrls: ['./cupones.component.css']
 })
 export class CuponesComponent implements OnInit {
   coupons: Cupon[] = [];
-   empresas: { [key: number]: string } = {};
+  companies: { [key: number]: EmpresaEditar } = {}; // Objeto para almacenar las empresas por companyId
 
   constructor(private couponService: CuponesService, private router: Router, private empresaService: EmpresaService) {}
 
@@ -25,19 +24,27 @@ export class CuponesComponent implements OnInit {
   loadCoupons(): void {
     this.couponService.getAllCoupons().subscribe((data: Cupon[]) => {
       this.coupons = data;
+      this.loadCompanyNames();
     });
   }
-  loadEmpresas(): void {
-    this.empresaService.getEmpresas().subscribe((data: any) => {
-      data.forEach((empresa: any) => {
-        this.empresas[empresa.id] = empresa.name;
-      });
+
+  loadCompanyNames(): void {
+    this.coupons.forEach(coupon => {
+      if (!this.companies[coupon.companyId]) { // Verificar si ya se ha cargado la empresa
+        this.empresaService.findById(coupon.companyId).subscribe((company: EmpresaEditar) => {
+          this.companies[coupon.companyId] = company; // Almacenar la empresa por companyId
+        });
+      }
     });
-    console.log(this.empresas);
+  }
+
+  getCompanyName(companyId: number): string {
+    const company = this.companies[companyId];
+    return company ? company.nameCompany : ''; // Devolver el nombre de la empresa si existe, de lo contrario, una cadena vacía
   }
 
   viewCoupon(id: number): void {
-    this.router.navigate(['canela/detalle-cupon/'+ id]);
+    this.router.navigate(['canela/detalle-cupon/', id]);
   }
 
   confirmDelete(id: number): void {
