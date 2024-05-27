@@ -369,5 +369,21 @@ th {
   padding: 10px 20px;
   cursor: pointer;
 }
+  .button-container{
+    display: flex;
+    justify-content: center;
+      align-items: center;
+  }
+  
+  .btn-plan{
+ 
+    background-color: #963e6c;
+    color: #ffffff; 
+    margin-left:42vh;
+    margin-top: 25px;
+  }
+  .botones{
+    margin-left:20vh;
+  }
 
   
